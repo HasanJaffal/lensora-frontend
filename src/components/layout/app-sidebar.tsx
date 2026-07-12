@@ -2,6 +2,7 @@ import {
   Bell,
   Eye,
   HelpCircle,
+  Languages,
   LogOut,
   PanelLeftClose,
   PanelLeftOpen,
@@ -30,9 +31,12 @@ const utilityActions: { icon: LucideIcon; labelKey: TranslationKey }[] = [
 ]
 
 export function AppSidebar({ className, isCollapsed, onNavigate, onToggle }: AppSidebarProps) {
-  const { t } = useTranslation()
+  const { locale, t, toggleLocale } = useTranslation()
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
+  )
+  const languageLabel = t(
+    locale === 'en' ? 'common.actions.switchToArabic' : 'common.actions.switchToEnglish',
   )
 
   return (
@@ -95,6 +99,21 @@ export function AppSidebar({ className, isCollapsed, onNavigate, onToggle }: App
 
       <div className="shrink-0 space-y-3 p-3">
         <div className={cn('space-y-1', isCollapsed && 'flex flex-col items-center')}>
+          <button
+            type="button"
+            aria-label={languageLabel}
+            title={languageLabel}
+            onClick={toggleLocale}
+            className={cn(
+              'flex h-10 items-center rounded-xl text-sm font-medium text-sidebar-foreground/70 transition-colors duration-200',
+              'hover:bg-sidebar-accent/45 hover:text-sidebar-foreground',
+              isCollapsed ? 'w-10 justify-center' : 'w-full gap-3 px-3',
+            )}
+          >
+            <Languages className="size-4 shrink-0" aria-hidden="true" />
+            <span className={cn('truncate', isCollapsed && 'sr-only')}>{languageLabel}</span>
+          </button>
+
           {utilityActions.map(({ icon: Icon, labelKey }) => {
             const label = t(labelKey)
 

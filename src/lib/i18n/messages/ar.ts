@@ -3,8 +3,18 @@ import { type I18nMessages } from './en'
 export const arMessages = {
   common: {
     actions: {
+      add: 'إضافة',
+      back: 'رجوع',
+      cancel: 'إلغاء',
+      close: 'إغلاق',
+      confirm: 'تأكيد',
+      continue: 'متابعة',
       goHome: 'العودة للرئيسية',
+      newRx: 'وصفة جديدة',
       retry: 'إعادة المحاولة',
+      save: 'حفظ',
+      search: 'بحث',
+      sendToPatient: 'إرسال إلى المريض',
       signIn: 'تسجيل الدخول',
       signOut: 'تسجيل الخروج',
       switchToArabic: 'التبديل إلى العربية',
@@ -21,9 +31,26 @@ export const arMessages = {
       dashboard: 'لوحة التحكم',
       expandSidebar: 'توسيع الشريط الجانبي',
       help: 'المساعدة',
+      importForm: 'استيراد نموذج',
+      intake: 'الاستقبال',
+      lensSelector: 'اختيار العدسات',
       notifications: 'الإشعارات',
       openNavigation: 'فتح التنقل',
+      patients: 'المرضى',
       settings: 'الإعدادات',
+      stock: 'المخزون',
+      tips: 'النصائح',
+      virtualTryOn: 'التجربة الافتراضية',
+    },
+    status: {
+      active: 'نشط',
+      inLab: 'في المختبر',
+      ready: 'جاهز',
+    },
+    stockStatus: {
+      inStock: 'متوفر',
+      low: 'منخفض',
+      out: 'نفد',
     },
     theme: {
       switchToDark: 'التبديل إلى الوضع الداكن',
@@ -97,5 +124,42 @@ export const arMessages = {
     emailPlaceholder: 'name@example.com',
     password: 'كلمة المرور',
     passwordPlaceholder: 'أدخل كلمة المرور',
+  },
+  dashboard: {
+    title: 'لوحة التحكم',
+    subtitle: 'نظرة عامة على يومك في سور أوبتيك.',
+  },
+  patients: {
+    title: 'المرضى',
+    subtitle: 'سجلات المرضى والوصفات الطبية.',
+    searchPlaceholder: 'ابحث عن المرضى أو الإطارات أو الأصناف',
+  },
+  intake: {
+    title: 'الاستقبال',
+    subtitle: 'استبيان استقبال المريض في الزيارة الأولى.',
+  },
+  import: {
+    title: 'استيراد نموذج',
+    subtitle: 'حوّل نموذجا ورقيا إلى استبيان رقمي.',
+  },
+  lens: {
+    title: 'اختيار العدسات',
+    subtitle: 'أنشئ وسعّر طلب عدسات جديد.',
+  },
+  tryOn: {
+    title: 'التجربة الافتراضية',
+    subtitle: 'اعرض الإطارات على المريض.',
+  },
+  tips: {
+    title: 'النصائح',
+    subtitle: 'نصائح رعاية مخصصة للمريض.',
+  },
+  stock: {
+    title: 'المخزون',
+    subtitle: 'المخزون وتنبيهات النفاد.',
+  },
+  assistant: {
+    title: 'المساعد',
+    placeholder: 'اسأل مساعد العيادة...',
   },
 } satisfies I18nMessages

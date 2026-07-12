@@ -34,8 +34,18 @@ const backendErrors = {
 export const enMessages = {
   common: {
     actions: {
+      add: 'Add',
+      back: 'Back',
+      cancel: 'Cancel',
+      close: 'Close',
+      confirm: 'Confirm',
+      continue: 'Continue',
       goHome: 'Go home',
+      newRx: 'New Rx',
       retry: 'Retry',
+      save: 'Save',
+      search: 'Search',
+      sendToPatient: 'Send to patient',
       signIn: 'Sign in',
       signOut: 'Sign out',
       switchToArabic: 'Switch to Arabic',
@@ -52,9 +62,26 @@ export const enMessages = {
       dashboard: 'Dashboard',
       expandSidebar: 'Expand sidebar',
       help: 'Help',
+      importForm: 'Import Form',
+      intake: 'Intake',
+      lensSelector: 'Lens Selector',
       notifications: 'Notifications',
       openNavigation: 'Open navigation',
+      patients: 'Patients',
       settings: 'Settings',
+      stock: 'Stock',
+      tips: 'Tips',
+      virtualTryOn: 'Virtual Try-On',
+    },
+    status: {
+      active: 'Active',
+      inLab: 'In lab',
+      ready: 'Ready',
+    },
+    stockStatus: {
+      inStock: 'In stock',
+      low: 'Low',
+      out: 'Out',
     },
     theme: {
       switchToDark: 'Switch to dark theme',
@@ -101,6 +128,43 @@ export const enMessages = {
     emailPlaceholder: 'name@example.com',
     password: 'Password',
     passwordPlaceholder: 'Enter your password',
+  },
+  dashboard: {
+    title: 'Dashboard',
+    subtitle: "Today's overview at Sour Optic.",
+  },
+  patients: {
+    title: 'Patients',
+    subtitle: 'Patient records and prescriptions.',
+    searchPlaceholder: 'Search patients, frames, or SKUs',
+  },
+  intake: {
+    title: 'Intake',
+    subtitle: 'First-visit patient intake questionnaire.',
+  },
+  import: {
+    title: 'Import Form',
+    subtitle: 'Convert a paper form into a digital questionnaire.',
+  },
+  lens: {
+    title: 'Lens Selector',
+    subtitle: 'Build and price a new lens order.',
+  },
+  tryOn: {
+    title: 'Virtual Try-On',
+    subtitle: 'Preview frames on the patient.',
+  },
+  tips: {
+    title: 'Tips',
+    subtitle: 'Personalized patient care tips.',
+  },
+  stock: {
+    title: 'Stock',
+    subtitle: 'Inventory and stock alerts.',
+  },
+  assistant: {
+    title: 'Assistant',
+    placeholder: 'Ask the practice assistant...',
   },
 }
 

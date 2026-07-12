@@ -19,6 +19,8 @@ export type {
   BackendErrorKey,
   BackendErrorMessages,
 } from './backend-error-keys'
+export { resolveBilingual } from './resolve-bilingual'
+export type { BilingualValue, ResolvedBilingual } from './resolve-bilingual'
 
 export function useTranslation() {
   const context = useContext(I18nContext)
