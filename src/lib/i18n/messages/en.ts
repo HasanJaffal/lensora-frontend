@@ -26,6 +26,9 @@ const backendErrors = {
   inventory: {
     outOfStock: 'This item is out of stock.',
   },
+  network: {
+    error: 'Unable to reach the server. Check your connection and try again.',
+  },
 } satisfies BackendErrorMessages
 
 export const enMessages = {

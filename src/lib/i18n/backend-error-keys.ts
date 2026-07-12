@@ -24,6 +24,9 @@ export const backendErrorKeys = {
   inventory: {
     outOfStock: 'inventory.outOfStock',
   },
+  network: {
+    error: 'network.error',
+  },
 } as const
 
 type BackendErrorKeyMap = typeof backendErrorKeys
