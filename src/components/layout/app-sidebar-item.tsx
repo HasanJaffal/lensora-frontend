@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react'
 import { type TranslationKey } from '@/lib/i18n'
 
 type SidebarItemProps = {
+  badge?: number
   icon: LucideIcon
   isCollapsed: boolean
   label: string
@@ -13,6 +14,7 @@ type SidebarItemProps = {
 }
 
 export function SidebarItem({
+  badge,
   icon: Icon,
   isCollapsed,
   label,
@@ -20,6 +22,7 @@ export function SidebarItem({
   onNavigate,
   to,
 }: SidebarItemProps) {
+  const showBadge = typeof badge === 'number' && badge > 0
   return (
     <Link
       to={to}
@@ -62,6 +65,19 @@ export function SidebarItem({
           />
 
           <span className={cn('truncate', isCollapsed && 'sr-only')}>{label}</span>
+
+          {showBadge ? (
+            isCollapsed ? (
+              <span
+                aria-hidden="true"
+                className="absolute end-1.5 top-1.5 size-2 rounded-full bg-destructive ring-2 ring-sidebar"
+              />
+            ) : (
+              <span className="ms-auto inline-flex min-w-5 items-center justify-center rounded-full bg-destructive px-1.5 text-xs font-semibold text-destructive-foreground">
+                {badge}
+              </span>
+            )
+          ) : null}
         </span>
       )}
     </Link>

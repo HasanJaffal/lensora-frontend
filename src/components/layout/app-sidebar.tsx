@@ -22,6 +22,7 @@ type AppSidebarProps = {
   className?: string
   onToggle: () => void
   onNavigate?: () => void
+  stockAlertCount?: number
 }
 
 const utilityActions: { icon: LucideIcon; labelKey: TranslationKey }[] = [
@@ -30,7 +31,13 @@ const utilityActions: { icon: LucideIcon; labelKey: TranslationKey }[] = [
   { icon: HelpCircle, labelKey: 'common.navigation.help' },
 ]
 
-export function AppSidebar({ className, isCollapsed, onNavigate, onToggle }: AppSidebarProps) {
+export function AppSidebar({
+  className,
+  isCollapsed,
+  onNavigate,
+  onToggle,
+  stockAlertCount = 0,
+}: AppSidebarProps) {
   const { locale, t, toggleLocale } = useTranslation()
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
@@ -87,6 +94,7 @@ export function AppSidebar({ className, isCollapsed, onNavigate, onToggle }: App
         {navigationItems.map((item) => (
           <SidebarItem
             key={item.to}
+            badge={item.hasStockBadge ? stockAlertCount : undefined}
             icon={item.icon}
             isCollapsed={isCollapsed}
             label={t(item.labelKey)}

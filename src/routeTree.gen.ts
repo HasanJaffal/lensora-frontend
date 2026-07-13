@@ -12,6 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppTryOnRouteImport } from './routes/_app/try-on'
+import { Route as AppTipsRouteImport } from './routes/_app/tips'
+import { Route as AppStockRouteImport } from './routes/_app/stock'
+import { Route as AppPatientsRouteImport } from './routes/_app/patients'
+import { Route as AppLensRouteImport } from './routes/_app/lens'
+import { Route as AppIntakeRouteImport } from './routes/_app/intake'
+import { Route as AppImportRouteImport } from './routes/_app/import'
+import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -27,27 +35,123 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTryOnRoute = AppTryOnRouteImport.update({
+  id: '/try-on',
+  path: '/try-on',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTipsRoute = AppTipsRouteImport.update({
+  id: '/tips',
+  path: '/tips',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStockRoute = AppStockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPatientsRoute = AppPatientsRouteImport.update({
+  id: '/patients',
+  path: '/patients',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLensRoute = AppLensRouteImport.update({
+  id: '/lens',
+  path: '/lens',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIntakeRoute = AppIntakeRouteImport.update({
+  id: '/intake',
+  path: '/intake',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppImportRoute = AppImportRouteImport.update({
+  id: '/import',
+  path: '/import',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPatientsPatientIdRoute = AppPatientsPatientIdRouteImport.update({
+  id: '/$patientId',
+  path: '/$patientId',
+  getParentRoute: () => AppPatientsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
+  '/import': typeof AppImportRoute
+  '/intake': typeof AppIntakeRoute
+  '/lens': typeof AppLensRoute
+  '/patients': typeof AppPatientsRouteWithChildren
+  '/stock': typeof AppStockRoute
+  '/tips': typeof AppTipsRoute
+  '/try-on': typeof AppTryOnRoute
+  '/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/import': typeof AppImportRoute
+  '/intake': typeof AppIntakeRoute
+  '/lens': typeof AppLensRoute
+  '/patients': typeof AppPatientsRouteWithChildren
+  '/stock': typeof AppStockRoute
+  '/tips': typeof AppTipsRoute
+  '/try-on': typeof AppTryOnRoute
   '/': typeof AppIndexRoute
+  '/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/_app/import': typeof AppImportRoute
+  '/_app/intake': typeof AppIntakeRoute
+  '/_app/lens': typeof AppLensRoute
+  '/_app/patients': typeof AppPatientsRouteWithChildren
+  '/_app/stock': typeof AppStockRoute
+  '/_app/tips': typeof AppTipsRoute
+  '/_app/try-on': typeof AppTryOnRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/import'
+    | '/intake'
+    | '/lens'
+    | '/patients'
+    | '/stock'
+    | '/tips'
+    | '/try-on'
+    | '/patients/$patientId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/'
-  id: '__root__' | '/_app' | '/login' | '/_app/'
+  to:
+    | '/login'
+    | '/import'
+    | '/intake'
+    | '/lens'
+    | '/patients'
+    | '/stock'
+    | '/tips'
+    | '/try-on'
+    | '/'
+    | '/patients/$patientId'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/login'
+    | '/_app/import'
+    | '/_app/intake'
+    | '/_app/lens'
+    | '/_app/patients'
+    | '/_app/stock'
+    | '/_app/tips'
+    | '/_app/try-on'
+    | '/_app/'
+    | '/_app/patients/$patientId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -78,14 +182,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/try-on': {
+      id: '/_app/try-on'
+      path: '/try-on'
+      fullPath: '/try-on'
+      preLoaderRoute: typeof AppTryOnRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/tips': {
+      id: '/_app/tips'
+      path: '/tips'
+      fullPath: '/tips'
+      preLoaderRoute: typeof AppTipsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/stock': {
+      id: '/_app/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof AppStockRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/patients': {
+      id: '/_app/patients'
+      path: '/patients'
+      fullPath: '/patients'
+      preLoaderRoute: typeof AppPatientsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/lens': {
+      id: '/_app/lens'
+      path: '/lens'
+      fullPath: '/lens'
+      preLoaderRoute: typeof AppLensRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/intake': {
+      id: '/_app/intake'
+      path: '/intake'
+      fullPath: '/intake'
+      preLoaderRoute: typeof AppIntakeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/import': {
+      id: '/_app/import'
+      path: '/import'
+      fullPath: '/import'
+      preLoaderRoute: typeof AppImportRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/patients/$patientId': {
+      id: '/_app/patients/$patientId'
+      path: '/$patientId'
+      fullPath: '/patients/$patientId'
+      preLoaderRoute: typeof AppPatientsPatientIdRouteImport
+      parentRoute: typeof AppPatientsRoute
+    }
   }
 }
 
+interface AppPatientsRouteChildren {
+  AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+}
+
+const AppPatientsRouteChildren: AppPatientsRouteChildren = {
+  AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+}
+
+const AppPatientsRouteWithChildren = AppPatientsRoute._addFileChildren(
+  AppPatientsRouteChildren,
+)
+
 interface AppRouteChildren {
+  AppImportRoute: typeof AppImportRoute
+  AppIntakeRoute: typeof AppIntakeRoute
+  AppLensRoute: typeof AppLensRoute
+  AppPatientsRoute: typeof AppPatientsRouteWithChildren
+  AppStockRoute: typeof AppStockRoute
+  AppTipsRoute: typeof AppTipsRoute
+  AppTryOnRoute: typeof AppTryOnRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppImportRoute: AppImportRoute,
+  AppIntakeRoute: AppIntakeRoute,
+  AppLensRoute: AppLensRoute,
+  AppPatientsRoute: AppPatientsRouteWithChildren,
+  AppStockRoute: AppStockRoute,
+  AppTipsRoute: AppTipsRoute,
+  AppTryOnRoute: AppTryOnRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
