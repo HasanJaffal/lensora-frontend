@@ -12,7 +12,8 @@ import {
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { type TranslationKey, useTranslation } from '@/lib/i18n'
+import { resolveBilingual, type TranslationKey, useTranslation } from '@/lib/i18n'
+import { useAuth } from '@/features/auth/auth-context'
 import { cn } from '@/lib/utils'
 import { SidebarItem } from './app-sidebar-item'
 import { navigationItems } from '../constants/navigation-items'
@@ -39,6 +40,10 @@ export function AppSidebar({
   stockAlertCount = 0,
 }: AppSidebarProps) {
   const { locale, t, toggleLocale } = useTranslation()
+  const { user, signOut } = useAuth()
+  const doctorName = user
+    ? resolveBilingual({ en: user.displayNameEn, ar: user.displayNameAr }, locale).primary
+    : '—'
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
   )
@@ -161,7 +166,7 @@ export function AppSidebar({
           </div>
 
           <div className={cn('min-w-0 flex-1', isCollapsed && 'sr-only')}>
-            <p className="truncate text-sm font-medium leading-snug">Dr. Sour Optic</p>
+            <p className="truncate text-sm font-medium leading-snug">{doctorName}</p>
             <p className="truncate text-xs leading-snug text-sidebar-foreground/55">
               {t('common.app.role')}
             </p>
@@ -170,6 +175,7 @@ export function AppSidebar({
           <Button
             variant="ghost"
             size="icon"
+            onClick={signOut}
             className={cn(
               'size-8 shrink-0 rounded-xl text-sidebar-foreground/60 hover:bg-sidebar-primary/12 hover:text-sidebar-foreground',
               isCollapsed && 'hidden',

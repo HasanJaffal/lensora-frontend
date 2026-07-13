@@ -120,6 +120,10 @@ export const enMessages = {
       idle: 'Submit',
       submitting: 'Submitting...',
     },
+    validation: {
+      email: 'Enter a valid email address.',
+      required: 'This field is required.',
+    },
   },
   login: {
     title: 'Welcome back',

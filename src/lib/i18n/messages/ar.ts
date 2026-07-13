@@ -116,6 +116,10 @@ export const arMessages = {
       idle: 'إرسال',
       submitting: 'جار الإرسال...',
     },
+    validation: {
+      email: 'أدخل بريدا إلكترونيا صالحا.',
+      required: 'هذا الحقل مطلوب.',
+    },
   },
   login: {
     title: 'مرحبا بعودتك',
