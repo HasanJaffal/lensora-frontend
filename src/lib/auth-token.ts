@@ -1,4 +1,4 @@
-const tokenStorageKey = 'sour-optic-token'
+const tokenStorageKey = 'lensora-token'
 
 let inMemoryToken: string | null = null
 

@@ -1,6 +1,6 @@
-# Sour Optic — Frontend
+# Lensora — Frontend
 
-React 19 + Vite + TypeScript frontend for the Sour Optic optometrist practice management platform.
+React 19 + Vite + TypeScript frontend for the Lensora optometrist practice management platform.
 
 ## Stack
 

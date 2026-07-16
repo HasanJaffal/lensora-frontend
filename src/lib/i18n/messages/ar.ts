@@ -21,7 +21,7 @@ export const arMessages = {
       switchToEnglish: 'التبديل إلى الإنجليزية',
     },
     app: {
-      name: 'سور أوبتيك',
+      name: 'لينسورا',
       tagline: 'إدارة العيادة',
       online: 'متصل',
       role: 'أخصائي بصريات',
@@ -123,7 +123,7 @@ export const arMessages = {
   },
   login: {
     title: 'مرحبا بعودتك',
-    subtitle: 'سجل الدخول إلى سور أوبتيك',
+    subtitle: 'سجل الدخول إلى لينسورا',
     email: 'البريد الإلكتروني',
     emailPlaceholder: 'name@example.com',
     password: 'كلمة المرور',
@@ -131,7 +131,7 @@ export const arMessages = {
   },
   dashboard: {
     title: 'لوحة التحكم',
-    subtitle: 'نظرة عامة على يومك في سور أوبتيك.',
+    subtitle: 'نظرة عامة على يومك في لينسورا.',
   },
   patients: {
     title: 'المرضى',

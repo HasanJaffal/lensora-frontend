@@ -52,7 +52,7 @@ export const enMessages = {
       switchToEnglish: 'Switch to English',
     },
     app: {
-      name: 'Sour Optic',
+      name: 'Lensora',
       tagline: 'Practice management',
       online: 'Online',
       role: 'Optometrist',
@@ -127,7 +127,7 @@ export const enMessages = {
   },
   login: {
     title: 'Welcome back',
-    subtitle: 'Sign in to Sour Optic',
+    subtitle: 'Sign in to Lensora',
     email: 'Email',
     emailPlaceholder: 'name@example.com',
     password: 'Password',
@@ -135,7 +135,7 @@ export const enMessages = {
   },
   dashboard: {
     title: 'Dashboard',
-    subtitle: "Today's overview at Sour Optic.",
+    subtitle: "Today's overview at Lensora.",
   },
   patients: {
     title: 'Patients',

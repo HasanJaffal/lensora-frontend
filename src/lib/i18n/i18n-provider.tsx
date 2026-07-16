@@ -13,7 +13,7 @@ type I18nProviderProps = {
   children: React.ReactNode
 }
 
-const localeStorageKey = 'sour-optic-locale'
+const localeStorageKey = 'lensora-locale'
 
 function getInitialLocale(): Locale {
   const storedLocale = window.localStorage.getItem(localeStorageKey)
