@@ -63,6 +63,13 @@ export const arMessages = {
       unauthorized: 'ليس لديك صلاحية لتنفيذ هذا الإجراء.',
       sessionExpired: 'انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.',
       accountDisabled: 'هذا الحساب معطل. تواصل مع المسؤول.',
+      emailTaken: 'هذا البريد الإلكتروني مستخدم بالفعل.',
+    },
+    organization: {
+      slugTaken: 'معرّف هذه المؤسسة مستخدم بالفعل.',
+    },
+    tenant: {
+      forbidden: 'ليس لديك صلاحية الوصول إلى هذه المؤسسة.',
     },
     resource: {
       notFound: 'تعذر العثور على العنصر المطلوب.',
@@ -82,6 +89,10 @@ export const arMessages = {
     },
     inventory: {
       outOfStock: 'هذا الصنف غير متوفر في المخزون.',
+    },
+    import: {
+      fileTooLarge: 'هذا الملف كبير جدا لتحميله.',
+      unsupportedType: 'نوع هذا الملف غير مدعوم.',
     },
     network: {
       error: 'تعذر الوصول إلى الخادم. تحقق من اتصالك وحاول مرة أخرى.',

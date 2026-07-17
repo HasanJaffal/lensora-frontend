@@ -44,6 +44,7 @@ export function AppSidebar({
   const doctorName = user
     ? resolveBilingual({ en: user.displayNameEn, ar: user.displayNameAr }, locale).primary
     : '—'
+  const organizationName = user?.organization.name ?? t('common.app.tagline')
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
   )
@@ -76,7 +77,7 @@ export function AppSidebar({
 
         <div className={cn('min-w-0 flex-1', isCollapsed && 'sr-only')}>
           <p className="truncate text-sm font-semibold tracking-tight">{t('common.app.name')}</p>
-          <p className="truncate text-xs text-sidebar-foreground/55">{t('common.app.tagline')}</p>
+          <p className="truncate text-xs text-sidebar-foreground/55">{organizationName}</p>
         </div>
 
         <Button

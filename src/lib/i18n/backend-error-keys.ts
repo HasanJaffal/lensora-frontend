@@ -4,6 +4,13 @@ export const backendErrorKeys = {
     unauthorized: 'auth.unauthorized',
     sessionExpired: 'auth.sessionExpired',
     accountDisabled: 'auth.accountDisabled',
+    emailTaken: 'auth.emailTaken',
+  },
+  organization: {
+    slugTaken: 'organization.slugTaken',
+  },
+  tenant: {
+    forbidden: 'tenant.forbidden',
   },
   resource: {
     notFound: 'resource.notFound',
@@ -23,6 +30,10 @@ export const backendErrorKeys = {
   },
   inventory: {
     outOfStock: 'inventory.outOfStock',
+  },
+  import: {
+    fileTooLarge: 'import.fileTooLarge',
+    unsupportedType: 'import.unsupportedType',
   },
   network: {
     error: 'network.error',

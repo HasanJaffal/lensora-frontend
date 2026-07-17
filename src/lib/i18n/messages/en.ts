@@ -6,6 +6,13 @@ const backendErrors = {
     unauthorized: 'You are not authorized to perform this action.',
     sessionExpired: 'Your session has expired. Please sign in again.',
     accountDisabled: 'This account is disabled. Contact an administrator.',
+    emailTaken: 'This email address is already in use.',
+  },
+  organization: {
+    slugTaken: 'This organization identifier is already in use.',
+  },
+  tenant: {
+    forbidden: 'You do not have access to this organization.',
   },
   resource: {
     notFound: 'The requested item could not be found.',
@@ -25,6 +32,10 @@ const backendErrors = {
   },
   inventory: {
     outOfStock: 'This item is out of stock.',
+  },
+  import: {
+    fileTooLarge: 'This file is too large to upload.',
+    unsupportedType: 'This file type is not supported.',
   },
   network: {
     error: 'Unable to reach the server. Check your connection and try again.',
