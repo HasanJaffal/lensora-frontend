@@ -8,6 +8,7 @@ const routeTitleKeys: { prefix: string; titleKey: TranslationKey }[] = [
   { prefix: '/try-on', titleKey: 'tryOn.title' },
   { prefix: '/tips', titleKey: 'tips.title' },
   { prefix: '/stock', titleKey: 'stock.title' },
+  { prefix: '/platform-admin', titleKey: 'platformAdmin.list.title' },
 ]
 
 export function getPageTitleKey(pathname: string): TranslationKey {

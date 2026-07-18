@@ -133,6 +133,7 @@ export const enMessages = {
     },
     validation: {
       email: 'Enter a valid email address.',
+      number: 'Enter a valid number.',
       required: 'This field is required.',
     },
   },
@@ -180,6 +181,42 @@ export const enMessages = {
   assistant: {
     title: 'Assistant',
     placeholder: 'Ask the practice assistant...',
+  },
+  platformAdmin: {
+    layout: {
+      title: 'Platform Administration',
+    },
+    list: {
+      title: 'Organizations',
+      subtitle: 'Manage practice organizations and their admin logins.',
+      addOrganization: 'Add organization',
+      columnName: 'Name',
+      columnSlug: 'Slug',
+      columnAdminEmail: 'Admin email',
+      columnAdminName: 'Admin name',
+      columnDepositPercent: 'Deposit %',
+      columnCreatedAt: 'Created',
+      emptyTitle: 'No organizations yet',
+      emptyDescription: 'Add your first organization to get started.',
+      loadError: 'We could not load organizations. Please try again.',
+      pageOf: 'Page {page} of {totalPages}',
+    },
+    form: {
+      title: 'Add organization',
+      description: 'Creates the organization and its single admin login.',
+      name: 'Organization name',
+      slug: 'Slug',
+      slugPlaceholder: 'acme-optometry',
+      slugPattern: 'Use lowercase letters, numbers, and hyphens only.',
+      depositPercent: 'Deposit percent (0–1)',
+      depositPercentRange: 'Enter a value between 0 and 1.',
+      adminDisplayNameEn: 'Admin display name (English)',
+      adminDisplayNameAr: 'Admin display name (Arabic)',
+      adminEmail: 'Admin email',
+      adminPassword: 'Admin password',
+      passwordMinLength: 'Password must be at least 8 characters.',
+      success: 'Organization created successfully.',
+    },
   },
 }
 

@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PlatformAdminRouteImport } from './routes/platform-admin'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as PlatformAdminIndexRouteImport } from './routes/platform-admin/index'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppTryOnRouteImport } from './routes/_app/try-on'
 import { Route as AppTipsRouteImport } from './routes/_app/tips'
@@ -21,6 +23,11 @@ import { Route as AppIntakeRouteImport } from './routes/_app/intake'
 import { Route as AppImportRouteImport } from './routes/_app/import'
 import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
 
+const PlatformAdminRoute = PlatformAdminRouteImport.update({
+  id: '/platform-admin',
+  path: '/platform-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -29,6 +36,11 @@ const LoginRoute = LoginRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformAdminIndexRoute = PlatformAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PlatformAdminRoute,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
@@ -79,6 +91,7 @@ const AppPatientsPatientIdRoute = AppPatientsPatientIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
+  '/platform-admin': typeof PlatformAdminRouteWithChildren
   '/import': typeof AppImportRoute
   '/intake': typeof AppIntakeRoute
   '/lens': typeof AppLensRoute
@@ -86,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/stock': typeof AppStockRoute
   '/tips': typeof AppTipsRoute
   '/try-on': typeof AppTryOnRoute
+  '/platform-admin/': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRoutesByTo {
@@ -98,12 +112,14 @@ export interface FileRoutesByTo {
   '/tips': typeof AppTipsRoute
   '/try-on': typeof AppTryOnRoute
   '/': typeof AppIndexRoute
+  '/platform-admin': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/platform-admin': typeof PlatformAdminRouteWithChildren
   '/_app/import': typeof AppImportRoute
   '/_app/intake': typeof AppIntakeRoute
   '/_app/lens': typeof AppLensRoute
@@ -112,6 +128,7 @@ export interface FileRoutesById {
   '/_app/tips': typeof AppTipsRoute
   '/_app/try-on': typeof AppTryOnRoute
   '/_app/': typeof AppIndexRoute
+  '/platform-admin/': typeof PlatformAdminIndexRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
 export interface FileRouteTypes {
@@ -119,6 +136,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
+    | '/platform-admin'
     | '/import'
     | '/intake'
     | '/lens'
@@ -126,6 +144,7 @@ export interface FileRouteTypes {
     | '/stock'
     | '/tips'
     | '/try-on'
+    | '/platform-admin/'
     | '/patients/$patientId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -138,11 +157,13 @@ export interface FileRouteTypes {
     | '/tips'
     | '/try-on'
     | '/'
+    | '/platform-admin'
     | '/patients/$patientId'
   id:
     | '__root__'
     | '/_app'
     | '/login'
+    | '/platform-admin'
     | '/_app/import'
     | '/_app/intake'
     | '/_app/lens'
@@ -151,16 +172,25 @@ export interface FileRouteTypes {
     | '/_app/tips'
     | '/_app/try-on'
     | '/_app/'
+    | '/platform-admin/'
     | '/_app/patients/$patientId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  PlatformAdminRoute: typeof PlatformAdminRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/platform-admin': {
+      id: '/platform-admin'
+      path: '/platform-admin'
+      fullPath: '/platform-admin'
+      preLoaderRoute: typeof PlatformAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -174,6 +204,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/platform-admin/': {
+      id: '/platform-admin/'
+      path: '/'
+      fullPath: '/platform-admin/'
+      preLoaderRoute: typeof PlatformAdminIndexRouteImport
+      parentRoute: typeof PlatformAdminRoute
     }
     '/_app/': {
       id: '/_app/'
@@ -277,9 +314,22 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface PlatformAdminRouteChildren {
+  PlatformAdminIndexRoute: typeof PlatformAdminIndexRoute
+}
+
+const PlatformAdminRouteChildren: PlatformAdminRouteChildren = {
+  PlatformAdminIndexRoute: PlatformAdminIndexRoute,
+}
+
+const PlatformAdminRouteWithChildren = PlatformAdminRoute._addFileChildren(
+  PlatformAdminRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  PlatformAdminRoute: PlatformAdminRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

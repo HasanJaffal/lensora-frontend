@@ -1,21 +1,21 @@
 import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
 
-import { AppLayout } from '@/components/layout/app-layout'
+import { PlatformAdminLayout } from '@/components/layout/platform-admin-layout'
 import { RequireRole } from '@/components/custom/require-role'
 import { RouteError, RoutePending } from '@/components/custom/route-boundaries'
 import { getAuthToken } from '@/lib/auth-token'
 
-export const Route = createFileRoute('/_app')({
+export const Route = createFileRoute('/platform-admin')({
   beforeLoad: () => {
     if (getAuthToken() === null) {
       throw redirect({ to: '/login' })
     }
   },
   component: () => (
-    <RequireRole role="organizationAdmin" redirectTo="/platform-admin">
-      <AppLayout>
+    <RequireRole role="platformAdmin" redirectTo="/">
+      <PlatformAdminLayout>
         <Outlet />
-      </AppLayout>
+      </PlatformAdminLayout>
     </RequireRole>
   ),
   pendingComponent: RoutePending,

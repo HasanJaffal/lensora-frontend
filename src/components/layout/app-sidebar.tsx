@@ -44,7 +44,7 @@ export function AppSidebar({
   const doctorName = user
     ? resolveBilingual({ en: user.displayNameEn, ar: user.displayNameAr }, locale).primary
     : '—'
-  const organizationName = user?.organization.name ?? t('common.app.tagline')
+  const organizationName = user?.organization?.name ?? t('common.app.tagline')
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
   )

@@ -4,13 +4,15 @@ export type OrganizationSummaryDto = {
   slug: string
 }
 
+export type UserRole = 'organizationAdmin' | 'platformAdmin'
+
 export type UserDto = {
   id: string
   email: string
   displayNameEn: string
   displayNameAr: string
-  role: string
-  organization: OrganizationSummaryDto
+  role: UserRole
+  organization: OrganizationSummaryDto | null
 }
 
 export type LoginRequest = {

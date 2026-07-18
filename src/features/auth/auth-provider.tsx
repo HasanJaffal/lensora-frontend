@@ -39,6 +39,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     (accessToken: string, user: UserDto) => {
       setAuthToken(accessToken)
       queryClient.setQueryData(authKeys.currentUser, user)
+      if (user.role === 'platformAdmin') {
+        navigate({ to: '/platform-admin' })
+        return
+      }
       navigate({ to: '/' })
     },
     [navigate, queryClient],
