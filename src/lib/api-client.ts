@@ -43,12 +43,21 @@ function buildUrl(path: string, query?: QueryParams): string {
   return url.toString()
 }
 
+function buildRequestBody(body: unknown, isMultipart: boolean): BodyInit | undefined {
+  if (body === undefined) {
+    return undefined
+  }
+
+  return isMultipart ? (body as FormData) : JSON.stringify(body)
+}
+
 async function request<TData>(
   method: string,
   path: string,
   options: RequestOptions = {},
 ): Promise<PaginatedResult<TData>> {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  const isMultipart = options.body instanceof FormData
+  const headers: Record<string, string> = isMultipart ? {} : { 'Content-Type': 'application/json' }
   const token = getAuthToken()
 
   if (token) {
@@ -61,7 +70,7 @@ async function request<TData>(
     response = await fetch(buildUrl(path, options.query), {
       method,
       headers,
-      body: options.body === undefined ? undefined : JSON.stringify(options.body),
+      body: buildRequestBody(options.body, isMultipart),
       signal: options.signal,
     })
   } catch {
@@ -96,6 +105,8 @@ export const apiClient = {
     request<TData>('GET', path, options),
   post: <TData>(path: string, body?: unknown, options?: RequestOptions) =>
     request<TData>('POST', path, { ...options, body }).then((result) => result.data),
+  postForm: <TData>(path: string, formData: FormData, options?: RequestOptions) =>
+    request<TData>('POST', path, { ...options, body: formData }).then((result) => result.data),
   put: <TData>(path: string, body?: unknown, options?: RequestOptions) =>
     request<TData>('PUT', path, { ...options, body }).then((result) => result.data),
   patch: <TData>(path: string, body?: unknown, options?: RequestOptions) =>
