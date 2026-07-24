@@ -148,6 +148,37 @@ export const enMessages = {
   dashboard: {
     title: 'Dashboard',
     subtitle: "Today's overview at Lensora.",
+    greeting: {
+      morning: 'Good morning, {doctorName}',
+      afternoon: 'Good afternoon, {doctorName}',
+      evening: 'Good evening, {doctorName}',
+      summary:
+        'You have {appointments} appointments today, {ordersInLab} orders in the lab, and {stockAlerts} stock alerts.',
+    },
+    kpis: {
+      appointmentsToday: 'Appointments today',
+      ordersInLab: 'Orders in lab',
+      stockAlerts: 'Active stock alerts',
+      revenueThisMonth: 'Revenue this month',
+    },
+    schedule: {
+      title: "Today's schedule",
+      empty: 'No appointments scheduled for today.',
+      reasons: {
+        lensFitting: 'Lens fitting',
+        pickup: 'Pickup',
+        followUp: 'Follow-up',
+      },
+    },
+    readyForPickup: {
+      title: 'Ready for pickup',
+      empty: 'No orders ready for pickup.',
+    },
+    lowStock: {
+      title: 'Low-stock alerts',
+      empty: 'All items are sufficiently stocked.',
+      remaining: '{qty} left',
+    },
   },
   patients: {
     title: 'Patients',

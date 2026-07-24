@@ -144,6 +144,37 @@ export const arMessages = {
   dashboard: {
     title: 'لوحة التحكم',
     subtitle: 'نظرة عامة على يومك في لينسورا.',
+    greeting: {
+      morning: 'صباح الخير، {doctorName}',
+      afternoon: 'مساء الخير، {doctorName}',
+      evening: 'طاب مساؤك، {doctorName}',
+      summary:
+        'لديك {appointments} موعدًا اليوم، و{ordersInLab} طلبًا في المختبر، و{stockAlerts} تنبيهات مخزون.',
+    },
+    kpis: {
+      appointmentsToday: 'مواعيد اليوم',
+      ordersInLab: 'طلبات في المختبر',
+      stockAlerts: 'تنبيهات المخزون النشطة',
+      revenueThisMonth: 'إيرادات هذا الشهر',
+    },
+    schedule: {
+      title: 'جدول اليوم',
+      empty: 'لا توجد مواعيد مجدولة اليوم.',
+      reasons: {
+        lensFitting: 'تركيب عدسات',
+        pickup: 'استلام',
+        followUp: 'متابعة',
+      },
+    },
+    readyForPickup: {
+      title: 'جاهز للاستلام',
+      empty: 'لا توجد طلبات جاهزة للاستلام.',
+    },
+    lowStock: {
+      title: 'تنبيهات نقص المخزون',
+      empty: 'جميع الأصناف متوفرة بكميات كافية.',
+      remaining: 'متبقٍ {qty}',
+    },
   },
   patients: {
     title: 'المرضى',
