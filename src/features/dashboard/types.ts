@@ -1,3 +1,7 @@
+import { type PatientStatus } from '@/features/patients'
+
+export type { PatientStatus }
+
 export type KpiDto = {
   delta: string
   value: number
@@ -9,8 +13,6 @@ export type DashboardKpisDto = {
   revenueThisMonth: KpiDto
   stockAlerts: KpiDto
 }
-
-export type PatientStatus = 'active' | 'lab' | 'ready'
 
 export type ScheduleReason = 'followUp' | 'lensFitting' | 'pickup'
 
