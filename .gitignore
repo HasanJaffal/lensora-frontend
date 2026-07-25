@@ -27,4 +27,5 @@ pnpm-debug.log*
 # Test / cache
 coverage/
 .vite/
+.tanstack/
 *.tsbuildinfo

@@ -518,6 +518,40 @@ export const enMessages = {
       loadError: 'We could not load styling advice. Please try again.',
     },
   },
+  storefront: {
+    tagline: 'Browse frames and try them on',
+    nav: {
+      label: 'Storefront sections',
+      browse: 'Browse',
+      tryOn: 'Try-On',
+    },
+    browse: {
+      title: 'Our collection',
+      subtitle: 'Explore the frames and sunglasses available in store.',
+    },
+    tryOn: {
+      title: 'Virtual Try-On',
+      subtitle: 'See how a frame looks on you before visiting the store.',
+      framesTitle: 'Available frames',
+      photoEmptyDescription: 'Capture or upload a photo to preview frames on yourself.',
+      photoPreviewAlt: 'Your photo preview',
+      framesEmptyDescription: 'There is nothing available for this selection right now.',
+    },
+    product: {
+      spec: 'Size',
+      finish: 'Finish',
+      price: '${price}',
+    },
+    products: {
+      loadError: 'We could not load the collection. Please try again.',
+      emptyTitle: 'Nothing available right now',
+      emptyDescription: 'There are no items available in this category at the moment.',
+    },
+    notFound: {
+      title: 'Store not found',
+      description: 'This store is not available. Please check the link and try again.',
+    },
+  },
   tips: {
     title: 'Tips',
     subtitle: 'Personalized patient care tips.',

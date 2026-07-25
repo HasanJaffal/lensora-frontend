@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as PlatformAdminIndexRouteImport } from './routes/platform-admin/index'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as StoreSlugRouteImport } from './routes/store.$slug'
 import { Route as PlatformAdminOrganizationsRouteImport } from './routes/platform-admin/organizations'
 import { Route as AppTryOnRouteImport } from './routes/_app/try-on'
 import { Route as AppTipsRouteImport } from './routes/_app/tips'
@@ -21,7 +22,9 @@ import { Route as AppStockRouteImport } from './routes/_app/stock'
 import { Route as AppLensRouteImport } from './routes/_app/lens'
 import { Route as AppIntakeRouteImport } from './routes/_app/intake'
 import { Route as AppImportRouteImport } from './routes/_app/import'
+import { Route as StoreSlugIndexRouteImport } from './routes/store.$slug.index'
 import { Route as AppPatientsIndexRouteImport } from './routes/_app/patients.index'
+import { Route as StoreSlugTryOnRouteImport } from './routes/store.$slug.try-on'
 import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
 
 const PlatformAdminRoute = PlatformAdminRouteImport.update({
@@ -47,6 +50,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
+} as any)
+const StoreSlugRoute = StoreSlugRouteImport.update({
+  id: '/store/$slug',
+  path: '/store/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PlatformAdminOrganizationsRoute =
   PlatformAdminOrganizationsRouteImport.update({
@@ -84,10 +92,20 @@ const AppImportRoute = AppImportRouteImport.update({
   path: '/import',
   getParentRoute: () => AppRoute,
 } as any)
+const StoreSlugIndexRoute = StoreSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StoreSlugRoute,
+} as any)
 const AppPatientsIndexRoute = AppPatientsIndexRouteImport.update({
   id: '/patients/',
   path: '/patients/',
   getParentRoute: () => AppRoute,
+} as any)
+const StoreSlugTryOnRoute = StoreSlugTryOnRouteImport.update({
+  id: '/try-on',
+  path: '/try-on',
+  getParentRoute: () => StoreSlugRoute,
 } as any)
 const AppPatientsPatientIdRoute = AppPatientsPatientIdRouteImport.update({
   id: '/patients/$patientId',
@@ -106,9 +124,12 @@ export interface FileRoutesByFullPath {
   '/tips': typeof AppTipsRoute
   '/try-on': typeof AppTryOnRoute
   '/platform-admin/organizations': typeof PlatformAdminOrganizationsRoute
+  '/store/$slug': typeof StoreSlugRouteWithChildren
   '/platform-admin/': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/store/$slug/try-on': typeof StoreSlugTryOnRoute
   '/patients/': typeof AppPatientsIndexRoute
+  '/store/$slug/': typeof StoreSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -122,7 +143,9 @@ export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
   '/platform-admin': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/store/$slug/try-on': typeof StoreSlugTryOnRoute
   '/patients': typeof AppPatientsIndexRoute
+  '/store/$slug': typeof StoreSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -136,10 +159,13 @@ export interface FileRoutesById {
   '/_app/tips': typeof AppTipsRoute
   '/_app/try-on': typeof AppTryOnRoute
   '/platform-admin/organizations': typeof PlatformAdminOrganizationsRoute
+  '/store/$slug': typeof StoreSlugRouteWithChildren
   '/_app/': typeof AppIndexRoute
   '/platform-admin/': typeof PlatformAdminIndexRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/store/$slug/try-on': typeof StoreSlugTryOnRoute
   '/_app/patients/': typeof AppPatientsIndexRoute
+  '/store/$slug/': typeof StoreSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -154,9 +180,12 @@ export interface FileRouteTypes {
     | '/tips'
     | '/try-on'
     | '/platform-admin/organizations'
+    | '/store/$slug'
     | '/platform-admin/'
     | '/patients/$patientId'
+    | '/store/$slug/try-on'
     | '/patients/'
+    | '/store/$slug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -170,7 +199,9 @@ export interface FileRouteTypes {
     | '/'
     | '/platform-admin'
     | '/patients/$patientId'
+    | '/store/$slug/try-on'
     | '/patients'
+    | '/store/$slug'
   id:
     | '__root__'
     | '/_app'
@@ -183,16 +214,20 @@ export interface FileRouteTypes {
     | '/_app/tips'
     | '/_app/try-on'
     | '/platform-admin/organizations'
+    | '/store/$slug'
     | '/_app/'
     | '/platform-admin/'
     | '/_app/patients/$patientId'
+    | '/store/$slug/try-on'
     | '/_app/patients/'
+    | '/store/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
   PlatformAdminRoute: typeof PlatformAdminRouteWithChildren
+  StoreSlugRoute: typeof StoreSlugRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -231,6 +266,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/store/$slug': {
+      id: '/store/$slug'
+      path: '/store/$slug'
+      fullPath: '/store/$slug'
+      preLoaderRoute: typeof StoreSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/platform-admin/organizations': {
       id: '/platform-admin/organizations'
@@ -281,12 +323,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppImportRouteImport
       parentRoute: typeof AppRoute
     }
+    '/store/$slug/': {
+      id: '/store/$slug/'
+      path: '/'
+      fullPath: '/store/$slug/'
+      preLoaderRoute: typeof StoreSlugIndexRouteImport
+      parentRoute: typeof StoreSlugRoute
+    }
     '/_app/patients/': {
       id: '/_app/patients/'
       path: '/patients'
       fullPath: '/patients/'
       preLoaderRoute: typeof AppPatientsIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/store/$slug/try-on': {
+      id: '/store/$slug/try-on'
+      path: '/try-on'
+      fullPath: '/store/$slug/try-on'
+      preLoaderRoute: typeof StoreSlugTryOnRouteImport
+      parentRoute: typeof StoreSlugRoute
     }
     '/_app/patients/$patientId': {
       id: '/_app/patients/$patientId'
@@ -338,10 +394,25 @@ const PlatformAdminRouteWithChildren = PlatformAdminRoute._addFileChildren(
   PlatformAdminRouteChildren,
 )
 
+interface StoreSlugRouteChildren {
+  StoreSlugTryOnRoute: typeof StoreSlugTryOnRoute
+  StoreSlugIndexRoute: typeof StoreSlugIndexRoute
+}
+
+const StoreSlugRouteChildren: StoreSlugRouteChildren = {
+  StoreSlugTryOnRoute: StoreSlugTryOnRoute,
+  StoreSlugIndexRoute: StoreSlugIndexRoute,
+}
+
+const StoreSlugRouteWithChildren = StoreSlugRoute._addFileChildren(
+  StoreSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
   PlatformAdminRoute: PlatformAdminRouteWithChildren,
+  StoreSlugRoute: StoreSlugRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -5,16 +5,17 @@ import { type ProductNeed } from '../types'
 
 type NeedSwitchProps = {
   need: ProductNeed
+  needs?: ProductNeed[]
   onNeedChange: (need: ProductNeed) => void
 }
 
-const productNeeds: ProductNeed[] = ['eyeglasses', 'sunglasses', 'contacts']
+const allProductNeeds: ProductNeed[] = ['eyeglasses', 'sunglasses', 'contacts']
 
 function needLabelKey(need: ProductNeed): TranslationKey {
   return `tryOn.needs.${need}` as TranslationKey
 }
 
-export function NeedSwitch({ need, onNeedChange }: NeedSwitchProps) {
+export function NeedSwitch({ need, needs = allProductNeeds, onNeedChange }: NeedSwitchProps) {
   const { t } = useTranslation()
 
   return (
@@ -23,7 +24,7 @@ export function NeedSwitch({ need, onNeedChange }: NeedSwitchProps) {
       aria-label={t('tryOn.needs.label')}
       className="inline-flex rounded-lg border border-border bg-card p-1"
     >
-      {productNeeds.map((productNeed) => {
+      {needs.map((productNeed) => {
         const isSelected = productNeed === need
 
         return (

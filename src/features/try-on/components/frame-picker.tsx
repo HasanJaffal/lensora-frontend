@@ -1,22 +1,26 @@
 import { EmptyState, ErrorState, LoadingState } from '@/components/custom/feedback'
-import { type InventoryItemDto } from '@/features/lens/types'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
 import { resolveFinishColor } from '../services/frame-appearance'
+import { type TryOnFrame } from '../types'
 
 type FramePickerProps = {
-  frames: InventoryItemDto[]
+  emptyDescription?: string
+  frames: TryOnFrame[]
   isError: boolean
   isLoading: boolean
+  label?: string
   onSelectFrame: (frameId: string) => void
   selectedFrameId: string | null
 }
 
 export function FramePicker({
+  emptyDescription,
   frames,
   isError,
   isLoading,
+  label,
   onSelectFrame,
   selectedFrameId,
 }: FramePickerProps) {
@@ -34,7 +38,7 @@ export function FramePicker({
     return (
       <EmptyState
         title={t('tryOn.frames.emptyTitle')}
-        description={t('tryOn.frames.emptyDescription')}
+        description={emptyDescription ?? t('tryOn.frames.emptyDescription')}
       />
     )
   }
@@ -42,7 +46,7 @@ export function FramePicker({
   return (
     <div
       role="radiogroup"
-      aria-label={t('tryOn.frames.title')}
+      aria-label={label ?? t('tryOn.frames.title')}
       className="grid gap-2 sm:grid-cols-2"
     >
       {frames.map((frame) => {
