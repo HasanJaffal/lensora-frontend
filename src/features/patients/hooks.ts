@@ -1,12 +1,6 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
-import {
-  getMatchedTips,
-  getPatient,
-  getPatientLensOrder,
-  listPatients,
-  sendTipToPatient,
-} from './api'
+import { getMatchedTips, getPatient, getPatientLensOrder, listPatients } from './api'
 import { patientsKeys } from './query-keys'
 import { type PatientListQuery } from './types'
 
@@ -35,12 +29,5 @@ export function useMatchedTips(patientId: string) {
   return useQuery({
     queryKey: patientsKeys.matchedTips(patientId),
     queryFn: () => getMatchedTips(patientId),
-  })
-}
-
-export function useSendTip() {
-  return useMutation({
-    mutationFn: ({ tipId, patientId }: { tipId: string; patientId: string }) =>
-      sendTipToPatient(tipId, patientId),
   })
 }

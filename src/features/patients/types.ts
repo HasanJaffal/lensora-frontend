@@ -98,25 +98,6 @@ export type LensOrderDto = {
   createdAt: string
 }
 
-export type TipDto = {
-  id: string
-  category: string
-  tags: string[]
-  icon: string
-  color: string
-  titleEn: string
-  titleAr: string
-  bodyEn: string
-  bodyAr: string
-}
-
-export type SendTipResultDto = {
-  tipId: string
-  patientId: string
-  channel: string
-  status: string
-}
-
 export type PatientListQuery = {
   page: number
   pageSize: number

@@ -242,7 +242,6 @@ export const enMessages = {
         loadError: 'We could not load matched tips.',
         emptyTitle: 'No matched tips',
         emptyDescription: 'Tips matched to this patient’s tags will appear here.',
-        sendSuccess: 'Tip sent to patient.',
       },
       history: {
         emptyTitle: 'No visit history yet',
@@ -521,6 +520,22 @@ export const enMessages = {
   tips: {
     title: 'Tips',
     subtitle: 'Personalized patient care tips.',
+    loadError: 'We could not load the tips library. Please try again.',
+    emptyTitle: 'No tips found',
+    emptyDescription: 'No tips match this category yet.',
+    categories: {
+      all: 'All',
+      screen: 'Screen & digital',
+      lensCare: 'Lens care',
+      adapting: 'Adapting',
+      children: 'Children',
+      sunUv: 'Sun & UV',
+    },
+    send: {
+      dialogTitle: 'Send tip to patient',
+      dialogDescription: 'Choose the patient who should receive “{tip}”.',
+      success: 'Tip sent to patient.',
+    },
   },
   stock: {
     title: 'Stock',

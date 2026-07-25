@@ -1,4 +1,5 @@
 export { LensSelectorPage } from './pages/lens-selector-page'
+export { PatientPicker } from './components/patient-picker'
 export { useInStockFrames } from './hooks'
 export { resolvePreselectedFrame } from './services/resolve-frame'
 export { formatPrice } from './services/order-total'

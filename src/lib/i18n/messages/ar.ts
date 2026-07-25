@@ -237,7 +237,6 @@ export const arMessages = {
         loadError: 'تعذر تحميل النصائح المطابقة.',
         emptyTitle: 'لا توجد نصائح مطابقة',
         emptyDescription: 'ستظهر هنا النصائح المطابقة لوسوم هذا المريض.',
-        sendSuccess: 'تم إرسال النصيحة إلى المريض.',
       },
       history: {
         emptyTitle: 'لا يوجد سجل زيارات بعد',
@@ -514,6 +513,22 @@ export const arMessages = {
   tips: {
     title: 'النصائح',
     subtitle: 'نصائح رعاية مخصصة للمريض.',
+    loadError: 'تعذّر تحميل مكتبة النصائح. يرجى المحاولة مرة أخرى.',
+    emptyTitle: 'لا توجد نصائح',
+    emptyDescription: 'لا توجد نصائح مطابقة لهذه الفئة بعد.',
+    categories: {
+      all: 'الكل',
+      screen: 'الشاشات والأجهزة الرقمية',
+      lensCare: 'العناية بالعدسات',
+      adapting: 'التأقلم',
+      children: 'الأطفال',
+      sunUv: 'الشمس والأشعة فوق البنفسجية',
+    },
+    send: {
+      dialogTitle: 'إرسال النصيحة إلى المريض',
+      dialogDescription: 'اختر المريض الذي سيستلم «{tip}».',
+      success: 'تم إرسال النصيحة إلى المريض.',
+    },
   },
   stock: {
     title: 'المخزون',
