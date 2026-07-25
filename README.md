@@ -14,11 +14,19 @@ Engineering standards and conventions are authoritative in [`CLAUDE.md`](CLAUDE.
 
 ## Getting started
 
+The frontend runs **locally via the Vite dev server** — it is not a Docker Compose service and has
+no `Makefile`.
+
 ```bash
 npm install
 npm run dev        # start the dev server (http://localhost:5173)
 npm run precommit  # format + lint + typecheck/build (the required quality gate)
 ```
+
+It talks to the backend API, which runs **only** through `docker compose` from
+[`../lensora-backend/`](../lensora-backend/) — start that first (`docker compose up --build`), then
+`npm run dev` here. `VITE_API_BASE_URL` must match the composed API's origin, which must in turn be
+listed in the backend's `CORS_ORIGINS`.
 
 ## Environment variables
 
