@@ -424,6 +424,61 @@ export const enMessages = {
   lens: {
     title: 'Lens Selector',
     subtitle: 'Build and price a new lens order.',
+    progress: {
+      label: 'Lens order steps',
+    },
+    steps: {
+      lensType: 'Lens type',
+      material: 'Material',
+      coatings: 'Coatings',
+      tint: 'Tint',
+      frame: 'Frame',
+      review: 'Review',
+    },
+    catalog: {
+      loadError: 'We could not load the lens catalog. Please try again.',
+      emptyTitle: 'No options available',
+      emptyDescription: 'This catalog has no options configured yet.',
+    },
+    lensType: {
+      description: 'Choose the lens design that matches the prescription.',
+    },
+    material: {
+      description: 'Choose the lens material.',
+    },
+    coatings: {
+      description: 'Add any coatings. This step is optional.',
+    },
+    tint: {
+      description: 'Choose a tint for the lenses.',
+    },
+    frame: {
+      description: 'Only frames currently in stock are shown.',
+      inStockCount: '{qty} in stock',
+      loadError: 'We could not load available frames. Please try again.',
+      emptyTitle: 'No frames in stock',
+      emptyDescription: 'There are no in-stock frames to choose from right now.',
+      goToStock: 'Go to Stock',
+    },
+    summary: {
+      title: 'Order summary',
+      pending: 'Not selected yet',
+      runningTotal: 'Running total',
+      serverPricingNote: 'Final pricing is confirmed by the server when the order is placed.',
+    },
+    review: {
+      description: 'Check the configuration before placing the order.',
+      patient: 'Patient',
+      configuration: 'Configuration',
+      noPatientSelected: 'Select the patient this order belongs to.',
+      searchPatient: 'Search for a patient',
+      searchPatientPlaceholder: 'Search by name or phone',
+      patientLoadError: 'We could not load patient details.',
+      noPatientsTitle: 'No matching patients',
+      confirmOrder: 'Confirm order',
+      confirming: 'Placing order...',
+      orderCreated: 'Lens order created. The patient is now in lab.',
+    },
   },
   tryOn: {
     title: 'Virtual Try-On',

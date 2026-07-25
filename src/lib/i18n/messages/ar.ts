@@ -417,6 +417,61 @@ export const arMessages = {
   lens: {
     title: 'اختيار العدسات',
     subtitle: 'أنشئ وسعّر طلب عدسات جديد.',
+    progress: {
+      label: 'خطوات طلب العدسات',
+    },
+    steps: {
+      lensType: 'نوع العدسة',
+      material: 'الخامة',
+      coatings: 'الطلاءات',
+      tint: 'الصبغة',
+      frame: 'الإطار',
+      review: 'المراجعة',
+    },
+    catalog: {
+      loadError: 'تعذّر تحميل كتالوج العدسات. يرجى المحاولة مرة أخرى.',
+      emptyTitle: 'لا توجد خيارات متاحة',
+      emptyDescription: 'لم يتم إعداد أي خيارات في هذا الكتالوج بعد.',
+    },
+    lensType: {
+      description: 'اختر تصميم العدسة المناسب للوصفة الطبية.',
+    },
+    material: {
+      description: 'اختر خامة العدسة.',
+    },
+    coatings: {
+      description: 'أضف أي طلاءات. هذه الخطوة اختيارية.',
+    },
+    tint: {
+      description: 'اختر صبغة للعدسات.',
+    },
+    frame: {
+      description: 'تظهر الإطارات المتوفرة في المخزون فقط.',
+      inStockCount: '{qty} في المخزون',
+      loadError: 'تعذّر تحميل الإطارات المتاحة. يرجى المحاولة مرة أخرى.',
+      emptyTitle: 'لا توجد إطارات في المخزون',
+      emptyDescription: 'لا توجد إطارات متوفرة في المخزون للاختيار منها حالياً.',
+      goToStock: 'الانتقال إلى المخزون',
+    },
+    summary: {
+      title: 'ملخص الطلب',
+      pending: 'لم يتم الاختيار بعد',
+      runningTotal: 'الإجمالي الجاري',
+      serverPricingNote: 'يتم تأكيد السعر النهائي من الخادم عند إنشاء الطلب.',
+    },
+    review: {
+      description: 'راجع الإعدادات قبل إنشاء الطلب.',
+      patient: 'المريض',
+      configuration: 'الإعدادات',
+      noPatientSelected: 'اختر المريض الذي يخصّه هذا الطلب.',
+      searchPatient: 'ابحث عن مريض',
+      searchPatientPlaceholder: 'ابحث بالاسم أو رقم الهاتف',
+      patientLoadError: 'تعذّر تحميل بيانات المريض.',
+      noPatientsTitle: 'لا يوجد مرضى مطابقون',
+      confirmOrder: 'تأكيد الطلب',
+      confirming: 'جارٍ إنشاء الطلب...',
+      orderCreated: 'تم إنشاء طلب العدسات. المريض الآن في المختبر.',
+    },
   },
   tryOn: {
     title: 'التجربة الافتراضية',
