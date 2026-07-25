@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, type ReactNode } from 'react'
-import { useNavigate } from '@tanstack/react-router'
+import { useNavigate, useRouterState } from '@tanstack/react-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { ApiError } from '@/lib/api-error'
@@ -18,9 +18,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
+  // The public storefront must not resolve a session: a customer browsing on a device the
+  // practice signed in on should trigger no authenticated request at all.
+  const isPublicRoute = useRouterState({
+    select: (state) => state.location.pathname.startsWith('/store/'),
+  })
+
   const currentUserQuery = useQuery<UserDto | null>({
     queryKey: authKeys.currentUser,
     queryFn: () => (getAuthToken() === null ? null : fetchCurrentUser()),
+    enabled: !isPublicRoute,
     retry: false,
     staleTime: Infinity,
   })
@@ -55,16 +62,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [navigate, queryClient])
 
   const user = currentUserQuery.data ?? null
+  // A disabled query stays `isLoading`, so public routes would otherwise hydrate forever.
+  const isHydrating = !isPublicRoute && currentUserQuery.isLoading
 
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: user !== null,
-      isHydrating: currentUserQuery.isLoading,
+      isHydrating,
       setSession,
       signOut,
     }),
-    [user, currentUserQuery.isLoading, setSession, signOut],
+    [user, isHydrating, setSession, signOut],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

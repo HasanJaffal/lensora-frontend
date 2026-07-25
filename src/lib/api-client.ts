@@ -21,6 +21,14 @@ type Envelope<TData> = {
   meta: { pagination?: PaginationMeta | null } | null
 }
 
+// Public endpoints must never carry a credential: a customer may browse a storefront on the
+// same device a practice signed in on, and that practice's token must not leave the browser.
+const publicPathPrefixes = ['/storefront/']
+
+function isPublicPath(path: string): boolean {
+  return publicPathPrefixes.some((prefix) => path.startsWith(prefix))
+}
+
 export type QueryParams = Record<string, string | number | boolean | undefined | null>
 
 type RequestOptions = {
@@ -58,7 +66,7 @@ async function request<TData>(
 ): Promise<PaginatedResult<TData>> {
   const isMultipart = options.body instanceof FormData
   const headers: Record<string, string> = isMultipart ? {} : { 'Content-Type': 'application/json' }
-  const token = getAuthToken()
+  const token = isPublicPath(path) ? null : getAuthToken()
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
