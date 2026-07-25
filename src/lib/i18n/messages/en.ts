@@ -483,6 +483,40 @@ export const enMessages = {
   tryOn: {
     title: 'Virtual Try-On',
     subtitle: 'Preview frames on the patient.',
+    needs: {
+      label: 'Product need',
+      eyeglasses: 'Eyeglasses',
+      sunglasses: 'Sunglasses',
+      contacts: 'Contacts',
+    },
+    photo: {
+      selectLabel: 'Choose or capture a photo',
+      capture: 'Capture photo',
+      retake: 'Replace photo',
+      remove: 'Remove',
+      previewAlt: 'Patient photo preview',
+      privacyNote: 'The photo stays on this device for this session only and is never uploaded.',
+      emptyTitle: 'No photo yet',
+      emptyDescription: 'Capture or upload a photo to preview frames on the patient.',
+    },
+    frames: {
+      title: 'Frames in stock',
+      loadError: 'We could not load frames. Please try again.',
+      emptyTitle: 'No frames in stock',
+      emptyDescription: 'There is nothing in stock for this product need right now.',
+    },
+    adjust: {
+      title: 'Adjust overlay',
+      width: 'Width',
+      height: 'Height',
+    },
+    advice: {
+      title: 'Styling advice',
+      offline: 'Offline advice',
+      noFrameTitle: 'No frame selected',
+      noFrameDescription: 'Choose a frame to get styling advice.',
+      loadError: 'We could not load styling advice. Please try again.',
+    },
   },
   tips: {
     title: 'Tips',
