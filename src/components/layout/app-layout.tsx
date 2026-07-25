@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 
 import { AppToolbar } from '@/components/layout/app-toolbar'
 import { AppSidebar } from '@/components/layout/app-sidebar'
+import { useInventoryStats } from '@/features/stock'
 import { cn } from '@/lib/utils'
 
 type AppLayoutProps = {
@@ -11,12 +12,15 @@ type AppLayoutProps = {
 export function AppLayout({ children }: AppLayoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+  const inventoryStatsQuery = useInventoryStats()
+  const stockAlertCount = inventoryStatsQuery.data?.lowStockCount ?? 0
 
   return (
     <div className="flex h-screen min-h-screen overflow-hidden bg-background text-foreground">
       <AppSidebar
         isCollapsed={isSidebarCollapsed}
         onToggle={() => setIsSidebarCollapsed((currentValue) => !currentValue)}
+        stockAlertCount={stockAlertCount}
         className="hidden md:flex"
       />
 
@@ -39,6 +43,7 @@ export function AppLayout({ children }: AppLayoutProps) {
           isCollapsed={false}
           onToggle={() => setIsMobileSidebarOpen(false)}
           onNavigate={() => setIsMobileSidebarOpen(false)}
+          stockAlertCount={stockAlertCount}
         />
       </div>
 

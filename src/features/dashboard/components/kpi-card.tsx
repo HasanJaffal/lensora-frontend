@@ -1,7 +1,7 @@
 import { type LucideIcon } from 'lucide-react'
 
 type KpiCardProps = {
-  delta: string
+  delta?: string
   icon: LucideIcon
   label: string
   value: string
