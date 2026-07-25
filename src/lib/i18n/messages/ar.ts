@@ -586,6 +586,15 @@ export const arMessages = {
   assistant: {
     title: 'المساعد',
     placeholder: 'اسأل مساعد العيادة...',
+    ask: 'اسأل',
+    send: 'إرسال الرسالة',
+    close: 'إغلاق المساعد',
+    typing: 'المساعد يكتب',
+    offline: 'وضع عدم الاتصال',
+    emptyTitle: 'كيف يمكنني المساعدة؟',
+    emptyDescription: 'اسأل عن المرضى أو الوصفات أو المخزون أو اختيار العدسات.',
+    suggestionsError: 'الاقتراحات غير متاحة حاليًا.',
+    sendError: 'تعذّر إرسال الرسالة. يُرجى المحاولة مرة أخرى.',
   },
   platformAdmin: {
     layout: {

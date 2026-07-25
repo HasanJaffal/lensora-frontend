@@ -593,6 +593,15 @@ export const enMessages = {
   assistant: {
     title: 'Assistant',
     placeholder: 'Ask the practice assistant...',
+    ask: 'Ask',
+    send: 'Send message',
+    close: 'Close assistant',
+    typing: 'The assistant is typing',
+    offline: 'Offline mode',
+    emptyTitle: 'How can I help?',
+    emptyDescription: 'Ask about patients, prescriptions, stock, or lens choices.',
+    suggestionsError: 'Suggestions are unavailable right now.',
+    sendError: 'The message could not be sent. Please try again.',
   },
   platformAdmin: {
     layout: {
