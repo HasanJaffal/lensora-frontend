@@ -10,6 +10,7 @@ const backendErrors = {
   },
   organization: {
     slugTaken: 'This organization identifier is already in use.',
+    deactivated: 'This organization is deactivated. Contact the platform administrator.',
   },
   tenant: {
     forbidden: 'You do not have access to this organization.',
@@ -596,6 +597,33 @@ export const enMessages = {
   platformAdmin: {
     layout: {
       title: 'Platform Administration',
+      roleLabel: 'Platform administrator',
+    },
+    navigation: {
+      dashboard: 'Dashboard',
+      organizations: 'Organization Management',
+    },
+    dashboard: {
+      title: 'Platform overview',
+      subtitle: 'A snapshot of every organization on Lensora.',
+      totalOrganizations: 'Total organizations',
+      activeOrganizations: 'Active organizations',
+      inactiveOrganizations: 'Deactivated organizations',
+      createdThisMonth: 'Created this month',
+      loadError: 'We could not load the platform overview. Please try again.',
+    },
+    status: {
+      active: 'Active',
+      inactive: 'Deactivated',
+      activate: 'Activate',
+      deactivate: 'Deactivate',
+      activateTitle: 'Activate organization',
+      deactivateTitle: 'Deactivate organization',
+      activateDescription: 'Restore access for {name}. Its admin will be able to sign in again.',
+      deactivateDescription:
+        'Suspend access for {name}. Its admin will be signed out and blocked from signing in until reactivated.',
+      activateSuccess: 'Organization activated.',
+      deactivateSuccess: 'Organization deactivated.',
     },
     list: {
       title: 'Organizations',
@@ -606,7 +634,9 @@ export const enMessages = {
       columnAdminEmail: 'Admin email',
       columnAdminName: 'Admin name',
       columnDepositPercent: 'Deposit %',
+      columnStatus: 'Status',
       columnCreatedAt: 'Created',
+      columnActions: 'Actions',
       emptyTitle: 'No organizations yet',
       emptyDescription: 'Add your first organization to get started.',
       loadError: 'We could not load organizations. Please try again.',

@@ -8,6 +8,7 @@ export const backendErrorKeys = {
   },
   organization: {
     slugTaken: 'organization.slugTaken',
+    deactivated: 'organization.deactivated',
   },
   tenant: {
     forbidden: 'tenant.forbidden',

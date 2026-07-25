@@ -7,6 +7,7 @@ type SidebarItemProps = {
   badge?: number
   icon: LucideIcon
   isCollapsed: boolean
+  isExactMatch?: boolean
   label: string
   labelKey: TranslationKey
   onNavigate?: () => void
@@ -17,6 +18,7 @@ export function SidebarItem({
   badge,
   icon: Icon,
   isCollapsed,
+  isExactMatch,
   label,
   labelKey,
   onNavigate,
@@ -27,7 +29,7 @@ export function SidebarItem({
     <Link
       to={to}
       onClick={onNavigate}
-      activeOptions={{ exact: to === '/' }}
+      activeOptions={{ exact: isExactMatch ?? to === '/' }}
       className={cn('block', isCollapsed && 'flex justify-center')}
       title={isCollapsed ? label : undefined}
       aria-label={label}

@@ -67,6 +67,7 @@ export const arMessages = {
     },
     organization: {
       slugTaken: 'معرّف هذه المؤسسة مستخدم بالفعل.',
+      deactivated: 'هذه المؤسسة معطلة. تواصل مع مسؤول المنصة.',
     },
     tenant: {
       forbidden: 'ليس لديك صلاحية الوصول إلى هذه المؤسسة.',
@@ -589,6 +590,33 @@ export const arMessages = {
   platformAdmin: {
     layout: {
       title: 'إدارة المنصة',
+      roleLabel: 'مسؤول المنصة',
+    },
+    navigation: {
+      dashboard: 'لوحة المعلومات',
+      organizations: 'إدارة المؤسسات',
+    },
+    dashboard: {
+      title: 'نظرة عامة على المنصة',
+      subtitle: 'لمحة عن جميع المؤسسات على لينسورا.',
+      totalOrganizations: 'إجمالي المؤسسات',
+      activeOrganizations: 'المؤسسات النشطة',
+      inactiveOrganizations: 'المؤسسات المعطلة',
+      createdThisMonth: 'أنشئت هذا الشهر',
+      loadError: 'تعذر تحميل نظرة عامة على المنصة. يرجى المحاولة مرة أخرى.',
+    },
+    status: {
+      active: 'نشطة',
+      inactive: 'معطلة',
+      activate: 'تفعيل',
+      deactivate: 'تعطيل',
+      activateTitle: 'تفعيل المؤسسة',
+      deactivateTitle: 'تعطيل المؤسسة',
+      activateDescription: 'استعادة وصول {name}. سيتمكن مسؤولها من تسجيل الدخول مرة أخرى.',
+      deactivateDescription:
+        'تعليق وصول {name}. سيتم تسجيل خروج مسؤولها ومنعه من تسجيل الدخول حتى إعادة التفعيل.',
+      activateSuccess: 'تم تفعيل المؤسسة.',
+      deactivateSuccess: 'تم تعطيل المؤسسة.',
     },
     list: {
       title: 'المؤسسات',
@@ -599,7 +627,9 @@ export const arMessages = {
       columnAdminEmail: 'البريد الإلكتروني للمسؤول',
       columnAdminName: 'اسم المسؤول',
       columnDepositPercent: 'نسبة العربون',
+      columnStatus: 'الحالة',
       columnCreatedAt: 'تاريخ الإنشاء',
+      columnActions: 'الإجراءات',
       emptyTitle: 'لا توجد مؤسسات بعد',
       emptyDescription: 'أضف أول مؤسسة للبدء.',
       loadError: 'تعذر تحميل المؤسسات. يرجى المحاولة مرة أخرى.',

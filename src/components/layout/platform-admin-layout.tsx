@@ -1,64 +1,58 @@
-import { Eye, LogOut } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
-import { ThemeSwitch } from '@/components/custom/theme-switch'
-import { Button } from '@/components/ui/button'
-import { useAuth } from '@/features/auth/auth-context'
-import { resolveBilingual, useTranslation } from '@/lib/i18n'
+import { PlatformAdminSidebar } from '@/components/layout/platform-admin-sidebar'
+import { PlatformAdminToolbar } from '@/components/layout/platform-admin-toolbar'
+import { cn } from '@/lib/utils'
 
 type PlatformAdminLayoutProps = {
   children: ReactNode
 }
 
 export function PlatformAdminLayout({ children }: PlatformAdminLayoutProps) {
-  const { locale, t, toggleLocale } = useTranslation()
-  const { user, signOut } = useAuth()
-  const adminName = user
-    ? resolveBilingual({ en: user.displayNameEn, ar: user.displayNameAr }, locale).primary
-    : '—'
-  const languageLabel = t(
-    locale === 'en' ? 'common.actions.switchToArabic' : 'common.actions.switchToEnglish',
-  )
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-screen min-h-screen flex-col overflow-hidden bg-background text-foreground">
-      <header className="flex h-16 shrink-0 items-center border-b border-border bg-card px-4 sm:px-6">
-        <div className="flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Eye className="size-4.5" aria-hidden="true" />
-          </div>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold">{t('platformAdmin.layout.title')}</p>
-            <p className="truncate text-xs text-muted-foreground">{adminName}</p>
-          </div>
-        </div>
+    <div className="flex h-screen min-h-screen overflow-hidden bg-background text-foreground">
+      <PlatformAdminSidebar
+        isCollapsed={isSidebarCollapsed}
+        onToggle={() => setIsSidebarCollapsed((currentValue) => !currentValue)}
+        className="hidden md:flex"
+      />
 
-        <div className="ms-auto flex items-center gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            aria-label={languageLabel}
-            title={languageLabel}
-            onClick={toggleLocale}
-          >
-            <span className="text-xs font-semibold uppercase">{locale === 'en' ? 'AR' : 'EN'}</span>
-          </Button>
-          <ThemeSwitch />
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            aria-label={t('common.actions.signOut')}
-            title={t('common.actions.signOut')}
-            onClick={signOut}
-          >
-            <LogOut className="size-4" aria-hidden="true" />
-          </Button>
-        </div>
-      </header>
+      <div
+        className={cn(
+          'fixed inset-0 z-40 bg-foreground/30 backdrop-blur-sm transition-opacity md:hidden',
+          isMobileSidebarOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+        )}
+        onClick={() => setIsMobileSidebarOpen(false)}
+        aria-hidden="true"
+      />
 
-      <main className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6 lg:px-10">{children}</main>
+      <div
+        className={cn(
+          'fixed inset-y-0 start-0 z-50 transition-transform duration-200 md:hidden',
+          isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full rtl:translate-x-full',
+        )}
+      >
+        <PlatformAdminSidebar
+          isCollapsed={false}
+          onToggle={() => setIsMobileSidebarOpen(false)}
+          onNavigate={() => setIsMobileSidebarOpen(false)}
+        />
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col bg-card">
+        <PlatformAdminToolbar onOpenNavigation={() => setIsMobileSidebarOpen(true)} />
+
+        <main className="min-h-0 flex-1 overflow-hidden bg-card px-3 pb-3 sm:px-4 sm:pb-4">
+          <div className="h-full overflow-hidden rounded-2xl border border-border bg-background">
+            <div className="h-full overflow-y-auto">
+              <div className="w-full px-4 py-5 sm:px-5 sm:py-5 lg:px-6 lg:py-6">{children}</div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { ar, enUS } from 'date-fns/locale'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Table,
@@ -16,6 +17,7 @@ import { EmptyState, ErrorState, LoadingState } from '@/components/custom/feedba
 import { useTranslation } from '@/lib/i18n'
 
 import { CreateOrganizationDialog } from '../components/create-organization-dialog'
+import { OrganizationStatusToggle } from '../components/organization-status-toggle'
 import { useOrganizations } from '../hooks'
 
 const PAGE_SIZE = 20
@@ -62,7 +64,9 @@ export function OrganizationsPage() {
                 <TableHead>{t('platformAdmin.list.columnAdminEmail')}</TableHead>
                 <TableHead>{t('platformAdmin.list.columnAdminName')}</TableHead>
                 <TableHead>{t('platformAdmin.list.columnDepositPercent')}</TableHead>
+                <TableHead>{t('platformAdmin.list.columnStatus')}</TableHead>
                 <TableHead>{t('platformAdmin.list.columnCreatedAt')}</TableHead>
+                <TableHead>{t('platformAdmin.list.columnActions')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -79,8 +83,20 @@ export function OrganizationsPage() {
                   <TableCell className="text-muted-foreground">
                     {Math.round(organization.depositPercent * 100)}%
                   </TableCell>
+                  <TableCell>
+                    <Badge variant={organization.isActive ? 'default' : 'destructive'}>
+                      {t(
+                        organization.isActive
+                          ? 'platformAdmin.status.active'
+                          : 'platformAdmin.status.inactive',
+                      )}
+                    </Badge>
+                  </TableCell>
                   <TableCell className="text-muted-foreground">
                     {format(new Date(organization.createdAt), 'PPP', { locale: dateLocale })}
+                  </TableCell>
+                  <TableCell>
+                    <OrganizationStatusToggle organization={organization} />
                   </TableCell>
                 </TableRow>
               ))}

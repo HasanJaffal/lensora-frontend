@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as PlatformAdminIndexRouteImport } from './routes/platform-admin/index'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as PlatformAdminOrganizationsRouteImport } from './routes/platform-admin/organizations'
 import { Route as AppTryOnRouteImport } from './routes/_app/try-on'
 import { Route as AppTipsRouteImport } from './routes/_app/tips'
 import { Route as AppStockRouteImport } from './routes/_app/stock'
@@ -47,6 +48,12 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const PlatformAdminOrganizationsRoute =
+  PlatformAdminOrganizationsRouteImport.update({
+    id: '/organizations',
+    path: '/organizations',
+    getParentRoute: () => PlatformAdminRoute,
+  } as any)
 const AppTryOnRoute = AppTryOnRouteImport.update({
   id: '/try-on',
   path: '/try-on',
@@ -99,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/stock': typeof AppStockRoute
   '/tips': typeof AppTipsRoute
   '/try-on': typeof AppTryOnRoute
+  '/platform-admin/organizations': typeof PlatformAdminOrganizationsRoute
   '/platform-admin/': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
 }
@@ -111,6 +119,7 @@ export interface FileRoutesByTo {
   '/stock': typeof AppStockRoute
   '/tips': typeof AppTipsRoute
   '/try-on': typeof AppTryOnRoute
+  '/platform-admin/organizations': typeof PlatformAdminOrganizationsRoute
   '/': typeof AppIndexRoute
   '/platform-admin': typeof PlatformAdminIndexRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
@@ -127,6 +136,7 @@ export interface FileRoutesById {
   '/_app/stock': typeof AppStockRoute
   '/_app/tips': typeof AppTipsRoute
   '/_app/try-on': typeof AppTryOnRoute
+  '/platform-admin/organizations': typeof PlatformAdminOrganizationsRoute
   '/_app/': typeof AppIndexRoute
   '/platform-admin/': typeof PlatformAdminIndexRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/stock'
     | '/tips'
     | '/try-on'
+    | '/platform-admin/organizations'
     | '/platform-admin/'
     | '/patients/$patientId'
   fileRoutesByTo: FileRoutesByTo
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/stock'
     | '/tips'
     | '/try-on'
+    | '/platform-admin/organizations'
     | '/'
     | '/platform-admin'
     | '/patients/$patientId'
@@ -171,6 +183,7 @@ export interface FileRouteTypes {
     | '/_app/stock'
     | '/_app/tips'
     | '/_app/try-on'
+    | '/platform-admin/organizations'
     | '/_app/'
     | '/platform-admin/'
     | '/_app/patients/$patientId'
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/platform-admin/organizations': {
+      id: '/platform-admin/organizations'
+      path: '/organizations'
+      fullPath: '/platform-admin/organizations'
+      preLoaderRoute: typeof PlatformAdminOrganizationsRouteImport
+      parentRoute: typeof PlatformAdminRoute
     }
     '/_app/try-on': {
       id: '/_app/try-on'
@@ -315,10 +335,12 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface PlatformAdminRouteChildren {
+  PlatformAdminOrganizationsRoute: typeof PlatformAdminOrganizationsRoute
   PlatformAdminIndexRoute: typeof PlatformAdminIndexRoute
 }
 
 const PlatformAdminRouteChildren: PlatformAdminRouteChildren = {
+  PlatformAdminOrganizationsRoute: PlatformAdminOrganizationsRoute,
   PlatformAdminIndexRoute: PlatformAdminIndexRoute,
 }
 
