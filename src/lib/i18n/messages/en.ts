@@ -38,6 +38,17 @@ const backendErrors = {
     fileTooLarge: 'This file is too large to upload.',
     unsupportedType: 'This file type is not supported.',
   },
+  attachment: {
+    notFound: 'The requested attachment could not be found.',
+    invalidFolder: 'This attachment category is not allowed.',
+    fileTooLarge: 'This file is too large to upload.',
+    unsupportedType: 'This file type is not supported.',
+  },
+  storage: {
+    notConfigured: 'File storage is not configured. Contact an administrator.',
+    unavailable: 'File storage is temporarily unavailable. Please try again.',
+    operationFailed: 'The file could not be processed. Please try again.',
+  },
   network: {
     error: 'Unable to reach the server. Check your connection and try again.',
   },

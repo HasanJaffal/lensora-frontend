@@ -36,6 +36,17 @@ export const backendErrorKeys = {
     fileTooLarge: 'import.fileTooLarge',
     unsupportedType: 'import.unsupportedType',
   },
+  attachment: {
+    notFound: 'attachment.notFound',
+    invalidFolder: 'attachment.invalidFolder',
+    fileTooLarge: 'attachment.fileTooLarge',
+    unsupportedType: 'attachment.unsupportedType',
+  },
+  storage: {
+    notConfigured: 'storage.notConfigured',
+    unavailable: 'storage.unavailable',
+    operationFailed: 'storage.operationFailed',
+  },
   network: {
     error: 'network.error',
   },
