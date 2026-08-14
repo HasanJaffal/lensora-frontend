@@ -1,18 +1,7 @@
-import {
-  Bell,
-  Eye,
-  HelpCircle,
-  Languages,
-  LogOut,
-  PanelLeftClose,
-  PanelLeftOpen,
-  Settings,
-  User,
-  type LucideIcon,
-} from 'lucide-react'
+import { Eye, LogOut, PanelLeftClose, PanelLeftOpen, User } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { resolveBilingual, type TranslationKey, useTranslation } from '@/lib/i18n'
+import { resolveBilingual, useTranslation } from '@/lib/i18n'
 import { useAuth } from '@/features/auth/auth-context'
 import { cn } from '@/lib/utils'
 import { SidebarItem } from './app-sidebar-item'
@@ -26,12 +15,6 @@ type AppSidebarProps = {
   stockAlertCount?: number
 }
 
-const utilityActions: { icon: LucideIcon; labelKey: TranslationKey }[] = [
-  { icon: Bell, labelKey: 'common.navigation.notifications' },
-  { icon: Settings, labelKey: 'common.navigation.settings' },
-  { icon: HelpCircle, labelKey: 'common.navigation.help' },
-]
-
 export function AppSidebar({
   className,
   isCollapsed,
@@ -39,7 +22,7 @@ export function AppSidebar({
   onToggle,
   stockAlertCount = 0,
 }: AppSidebarProps) {
-  const { locale, t, toggleLocale } = useTranslation()
+  const { locale, t } = useTranslation()
   const { user, signOut } = useAuth()
   const doctorName = user
     ? resolveBilingual({ en: user.displayNameEn, ar: user.displayNameAr }, locale).primary
@@ -47,9 +30,6 @@ export function AppSidebar({
   const organizationName = user?.organization?.name ?? t('common.app.tagline')
   const toggleSidebarLabel = t(
     isCollapsed ? 'common.navigation.expandSidebar' : 'common.navigation.collapseSidebar',
-  )
-  const languageLabel = t(
-    locale === 'en' ? 'common.actions.switchToArabic' : 'common.actions.switchToEnglish',
   )
 
   return (
@@ -112,48 +92,10 @@ export function AppSidebar({
       </nav>
 
       <div className="shrink-0 space-y-3 p-3">
-        <div className={cn('space-y-1', isCollapsed && 'flex flex-col items-center')}>
-          <button
-            type="button"
-            aria-label={languageLabel}
-            title={languageLabel}
-            onClick={toggleLocale}
-            className={cn(
-              'flex h-10 items-center rounded-xl text-sm font-medium text-sidebar-foreground/70 transition-colors duration-200',
-              'hover:bg-sidebar-accent/45 hover:text-sidebar-foreground',
-              isCollapsed ? 'w-10 justify-center' : 'w-full gap-3 px-3',
-            )}
-          >
-            <Languages className="size-4 shrink-0" aria-hidden="true" />
-            <span className={cn('truncate', isCollapsed && 'sr-only')}>{languageLabel}</span>
-          </button>
-
-          {utilityActions.map(({ icon: Icon, labelKey }) => {
-            const label = t(labelKey)
-
-            return (
-              <button
-                key={labelKey}
-                type="button"
-                aria-label={label}
-                title={label}
-                className={cn(
-                  'flex h-10 items-center rounded-xl text-sm font-medium text-sidebar-foreground/70 transition-colors duration-200',
-                  'hover:bg-sidebar-accent/45 hover:text-sidebar-foreground',
-                  isCollapsed ? 'w-10 justify-center' : 'w-full gap-3 px-3',
-                )}
-              >
-                <Icon className="size-4 shrink-0" aria-hidden="true" />
-                <span className={cn('truncate', isCollapsed && 'sr-only')}>{label}</span>
-              </button>
-            )
-          })}
-        </div>
-
         <div
           className={cn(
-            'flex items-center rounded-2xl bg-sidebar-primary/10 p-2.5 ring-1 ring-inset ring-sidebar-primary/12 transition-colors duration-200 hover:bg-sidebar-primary/14',
-            isCollapsed ? 'justify-center' : 'gap-2.5',
+            'flex rounded-2xl bg-sidebar-primary/10 p-2.5 ring-1 ring-inset ring-sidebar-primary/12 transition-colors duration-200 hover:bg-sidebar-primary/14',
+            isCollapsed ? 'flex-col items-center gap-2' : 'items-center gap-2.5',
           )}
         >
           <div className="relative shrink-0">
@@ -177,10 +119,7 @@ export function AppSidebar({
             variant="ghost"
             size="icon"
             onClick={signOut}
-            className={cn(
-              'size-8 shrink-0 rounded-xl text-sidebar-foreground/60 hover:bg-sidebar-primary/12 hover:text-sidebar-foreground',
-              isCollapsed && 'hidden',
-            )}
+            className="size-8 shrink-0 rounded-xl text-sidebar-foreground/60 hover:bg-sidebar-primary/12 hover:text-sidebar-foreground"
             aria-label={t('common.actions.signOut')}
             title={t('common.actions.signOut')}
           >

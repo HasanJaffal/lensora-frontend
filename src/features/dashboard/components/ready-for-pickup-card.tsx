@@ -1,4 +1,5 @@
 import { useTranslation } from '@/lib/i18n'
+import { formatCurrencyPrecise } from '@/lib/format-number'
 import { cn } from '@/lib/utils'
 
 import { type ReadyForPickupDto } from '../types'
@@ -8,13 +9,8 @@ type ReadyForPickupCardProps = {
   readyForPickup: ReadyForPickupDto[]
 }
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  currency: 'USD',
-  style: 'currency',
-})
-
 export function ReadyForPickupCard({ className, readyForPickup }: ReadyForPickupCardProps) {
-  const { t } = useTranslation()
+  const { locale, t } = useTranslation()
 
   return (
     <article className={cn('rounded-2xl border border-border bg-card p-5 shadow-sm', className)}>
@@ -37,7 +33,7 @@ export function ReadyForPickupCard({ className, readyForPickup }: ReadyForPickup
                 </span>
               </span>
               <span className="shrink-0 font-mono text-sm font-medium text-foreground">
-                {entry.totalDue === null ? '—' : currencyFormatter.format(entry.totalDue)}
+                {entry.totalDue === null ? '—' : formatCurrencyPrecise(entry.totalDue, locale)}
               </span>
             </li>
           ))}

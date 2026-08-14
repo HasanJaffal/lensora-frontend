@@ -35,8 +35,8 @@ export function useCreateOrganization() {
 
   return useMutation({
     mutationFn: createOrganization,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['platform-admin'] })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: platformAdminKeys.all })
     },
   })
 }
@@ -46,8 +46,8 @@ export function useSetOrganizationStatus() {
 
   return useMutation({
     mutationFn: setOrganizationStatus,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['platform-admin'] })
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: platformAdminKeys.all })
     },
   })
 }

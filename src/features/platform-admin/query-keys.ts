@@ -1,6 +1,7 @@
 export const platformAdminKeys = {
+  all: ['platform-admin'] as const,
   organizations: (page: number, pageSize: number) =>
-    ['platform-admin', 'organizations', { page, pageSize }] as const,
-  organization: (id: string) => ['platform-admin', 'organizations', id] as const,
-  dashboard: () => ['platform-admin', 'dashboard'] as const,
+    [...platformAdminKeys.all, 'organizations', { page, pageSize }] as const,
+  organization: (id: string) => [...platformAdminKeys.all, 'organizations', id] as const,
+  dashboard: () => [...platformAdminKeys.all, 'dashboard'] as const,
 }

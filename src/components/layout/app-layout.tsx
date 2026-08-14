@@ -11,7 +11,7 @@ type AppLayoutProps = {
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
   const inventoryStatsQuery = useInventoryStats()
   const stockAlertCount = inventoryStatsQuery.data?.lowStockCount ?? 0

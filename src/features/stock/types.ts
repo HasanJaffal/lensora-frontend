@@ -4,6 +4,7 @@ export type StockCategoryFilter = StockCategory | 'all'
 
 export type StockStatus = 'inStock' | 'low' | 'out'
 
+// Decimal fields serialize as JSON strings (e.g. "145.00") to preserve precision.
 export type InventoryItemDto = {
   id: string
   category: string
@@ -15,7 +16,7 @@ export type InventoryItemDto = {
   sku: string
   qty: number
   threshold: number
-  price: number
+  price: string
   status: StockStatus
   quantityRatio: number
 }
@@ -24,7 +25,7 @@ export type InventoryStatsDto = {
   totalSkus: number
   lowStockCount: number
   outOfStockCount: number
-  totalValue: number
+  totalValue: string
 }
 
 export type InventoryFilters = {

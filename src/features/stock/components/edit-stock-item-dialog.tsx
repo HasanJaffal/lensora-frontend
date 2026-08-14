@@ -40,7 +40,7 @@ function collectChangedFields(
     changes.threshold = Number(values.threshold)
   }
 
-  if (Number(values.price) !== item.price) {
+  if (Number(values.price) !== Number(item.price)) {
     changes.price = Number(values.price)
   }
 

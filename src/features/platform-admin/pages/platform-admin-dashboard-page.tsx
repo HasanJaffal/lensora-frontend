@@ -3,13 +3,12 @@ import { Building2, CalendarPlus, CircleCheck, CircleSlash } from 'lucide-react'
 import { ErrorState, LoadingState } from '@/components/custom/feedback'
 import { KpiCard } from '@/features/dashboard'
 import { useTranslation } from '@/lib/i18n'
+import { formatCount } from '@/lib/format-number'
 
 import { usePlatformAdminDashboard } from '../hooks'
 
-const numberFormatter = new Intl.NumberFormat('en-US')
-
 export function PlatformAdminDashboardPage() {
-  const { t } = useTranslation()
+  const { locale, t } = useTranslation()
   const dashboardQuery = usePlatformAdminDashboard()
 
   if (dashboardQuery.isLoading) {
@@ -42,22 +41,22 @@ export function PlatformAdminDashboardPage() {
         <KpiCard
           icon={Building2}
           label={t('platformAdmin.dashboard.totalOrganizations')}
-          value={numberFormatter.format(totalOrganizations)}
+          value={formatCount(totalOrganizations, locale)}
         />
         <KpiCard
           icon={CircleCheck}
           label={t('platformAdmin.dashboard.activeOrganizations')}
-          value={numberFormatter.format(activeOrganizations)}
+          value={formatCount(activeOrganizations, locale)}
         />
         <KpiCard
           icon={CircleSlash}
           label={t('platformAdmin.dashboard.inactiveOrganizations')}
-          value={numberFormatter.format(inactiveOrganizations)}
+          value={formatCount(inactiveOrganizations, locale)}
         />
         <KpiCard
           icon={CalendarPlus}
           label={t('platformAdmin.dashboard.createdThisMonth')}
-          value={numberFormatter.format(organizationsCreatedThisMonth)}
+          value={formatCount(organizationsCreatedThisMonth, locale)}
         />
       </div>
     </div>

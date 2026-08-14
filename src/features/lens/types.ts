@@ -17,21 +17,8 @@ export type LensCatalogDto = {
 
 export type FrameUse = 'eyeglasses' | 'sunglasses' | 'contacts'
 
-export type InventoryItemDto = {
-  id: string
-  category: string
-  name: string
-  brand: string
-  spec: string
-  shape: string | null
-  color: string | null
-  sku: string
-  qty: number
-  threshold: number
-  price: string
-  status: string
-  quantityRatio: number
-}
+// The inventory contract is owned by the stock feature; frames are the same `/inventory` rows.
+export type { InventoryItemDto } from '@/features/stock/types'
 
 export type CreateOrderRequest = {
   patientId: string

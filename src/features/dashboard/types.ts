@@ -2,9 +2,10 @@ import { type PatientStatus } from '@/features/patients'
 
 export type { PatientStatus }
 
+// Decimal fields serialize as JSON strings (e.g. "12400.00") to preserve precision.
 export type KpiDto = {
   delta: string
-  value: number
+  value: string
 }
 
 export type DashboardKpisDto = {
@@ -33,7 +34,7 @@ export type ReadyForPickupDto = {
   patientId: string
   patientName: string
   product: string
-  totalDue: number | null
+  totalDue: string | null
 }
 
 export type StockStatus = 'inStock' | 'low' | 'out'
