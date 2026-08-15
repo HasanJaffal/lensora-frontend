@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { ErrorState, LoadingState } from '@/components/custom/feedback'
 import { ExtractedQuestionsList, useImportIntakeDefinition } from '@/features/import'
 import { useTranslation } from '@/lib/i18n'
@@ -13,8 +14,8 @@ export function ImportedQuestionsPanel({ importId }: ImportedQuestionsPanelProps
   const definitionQuery = useImportIntakeDefinition(importId)
 
   return (
-    <details className="group rounded-lg border border-border bg-card">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4">
+    <Collapsible className="group rounded-lg border border-border bg-card">
+      <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between gap-3 p-4 text-start">
         <div>
           <h2 className="text-sm font-semibold text-card-foreground">
             {t('intake.importReference.title')}
@@ -25,11 +26,11 @@ export function ImportedQuestionsPanel({ importId }: ImportedQuestionsPanelProps
         </div>
         <ChevronDown
           aria-hidden="true"
-          className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
+          className="size-4 shrink-0 text-muted-foreground transition-transform group-data-panel-open:rotate-180"
         />
-      </summary>
+      </CollapsibleTrigger>
 
-      <div className="border-t border-border p-4">
+      <CollapsibleContent className="border-t border-border p-4">
         {definitionQuery.isLoading ? <LoadingState size="sm" /> : null}
 
         {definitionQuery.isError ? (
@@ -46,7 +47,7 @@ export function ImportedQuestionsPanel({ importId }: ImportedQuestionsPanelProps
             <ExtractedQuestionsList questions={definitionQuery.data.questions} />
           </div>
         ) : null}
-      </div>
-    </details>
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

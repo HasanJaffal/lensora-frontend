@@ -268,6 +268,10 @@ export const arMessages = {
       draftSaved: 'تم حفظ المسودة.',
       completed: 'تم إكمال الاستبيان.',
       validationFailed: 'يرجى تعبئة الحقول المطلوبة قبل الإكمال.',
+      completeRequirementHint:
+        'تحفظ المسودة كل ما أدخلته. يتطلب الإكمال الاسم وتاريخ الميلاد وسبب الزيارة.',
+      tabHasErrors: 'يحتوي هذا القسم على حقول ناقصة أو غير صالحة',
+      discardChanges: 'لديك تغييرات غير محفوظة. هل تريد المغادرة دون حفظ؟',
     },
     tabs: {
       individualInfo: 'أ — المعلومات الشخصية',
