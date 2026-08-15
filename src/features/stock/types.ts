@@ -39,6 +39,19 @@ export type InventoryUpdateRequest = {
   price?: number
 }
 
+export type InventoryCreateRequest = {
+  category: StockCategory
+  name: string
+  brand: string
+  spec: string
+  shape: string | null
+  color: string | null
+  sku: string
+  qty: number
+  threshold: number
+  price: number
+}
+
 export type UpdateInventoryItemVariables = {
   itemId: string
   changes: InventoryUpdateRequest

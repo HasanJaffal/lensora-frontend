@@ -1,14 +1,9 @@
-import { useState } from 'react'
-import { Pencil } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { formatPrice } from '@/features/lens'
-import { useTranslation } from '@/lib/i18n'
 
 import { type InventoryItemDto } from '../types'
-import { EditStockItemDialog } from './edit-stock-item-dialog'
 import { QuantityBar } from './quantity-bar'
+import { StockItemActions } from './stock-item-actions'
 import { StockStatusPill } from './stock-status-pill'
 
 type StockTableRowProps = {
@@ -16,9 +11,6 @@ type StockTableRowProps = {
 }
 
 export function StockTableRow({ item }: StockTableRowProps) {
-  const { t } = useTranslation()
-  const [isEditOpen, setIsEditOpen] = useState(false)
-
   return (
     <TableRow>
       <TableCell>
@@ -42,16 +34,7 @@ export function StockTableRow({ item }: StockTableRowProps) {
       </TableCell>
       <TableCell className="font-mono text-foreground">{formatPrice(item.price)}</TableCell>
       <TableCell>
-        <Button
-          type="button"
-          size="icon"
-          variant="ghost"
-          aria-label={t('stock.edit.action')}
-          onClick={() => setIsEditOpen(true)}
-        >
-          <Pencil className="size-4" aria-hidden="true" />
-        </Button>
-        <EditStockItemDialog isOpen={isEditOpen} item={item} onOpenChange={setIsEditOpen} />
+        <StockItemActions item={item} />
       </TableCell>
     </TableRow>
   )

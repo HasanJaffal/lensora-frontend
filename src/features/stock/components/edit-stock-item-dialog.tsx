@@ -62,6 +62,7 @@ export function EditStockItemDialog({ isOpen, item, onOpenChange }: EditStockIte
       const changes = collectChangedFields(value, item)
 
       if (Object.keys(changes).length === 0) {
+        toast.info(t('stock.edit.noChanges'))
         onOpenChange(false)
         return
       }

@@ -31,6 +31,7 @@ export const backendErrorKeys = {
   },
   inventory: {
     outOfStock: 'inventory.outOfStock',
+    skuTaken: 'inventory.skuTaken',
   },
   import: {
     fileTooLarge: 'import.fileTooLarge',

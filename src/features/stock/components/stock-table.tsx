@@ -22,9 +22,7 @@ export function StockTable({ items }: StockTableProps) {
             <TableHead>{t('stock.columns.quantity')}</TableHead>
             <TableHead>{t('stock.columns.status')}</TableHead>
             <TableHead>{t('stock.columns.price')}</TableHead>
-            <TableHead>
-              <span className="sr-only">{t('stock.columns.actions')}</span>
-            </TableHead>
+            <TableHead>{t('stock.columns.actions')}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

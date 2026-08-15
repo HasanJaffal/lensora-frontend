@@ -1,13 +1,8 @@
-import { useState } from 'react'
-import { Pencil } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/features/lens'
-import { useTranslation } from '@/lib/i18n'
 
 import { type InventoryItemDto } from '../types'
-import { EditStockItemDialog } from './edit-stock-item-dialog'
 import { QuantityBar } from './quantity-bar'
+import { StockItemActions } from './stock-item-actions'
 import { StockStatusPill } from './stock-status-pill'
 
 type StockCardProps = {
@@ -15,9 +10,6 @@ type StockCardProps = {
 }
 
 export function StockCard({ item }: StockCardProps) {
-  const { t } = useTranslation()
-  const [isEditOpen, setIsEditOpen] = useState(false)
-
   return (
     <article className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm">
       <div className="flex items-start justify-between gap-2">
@@ -44,17 +36,9 @@ export function StockCard({ item }: StockCardProps) {
         </span>
       </div>
 
-      <Button
-        type="button"
-        variant="outline"
-        className="self-start"
-        onClick={() => setIsEditOpen(true)}
-      >
-        <Pencil className="size-4" aria-hidden="true" />
-        {t('stock.edit.action')}
-      </Button>
-
-      <EditStockItemDialog isOpen={isEditOpen} item={item} onOpenChange={setIsEditOpen} />
+      <div className="self-start">
+        <StockItemActions item={item} />
+      </div>
     </article>
   )
 }

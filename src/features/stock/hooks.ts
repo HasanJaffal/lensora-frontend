@@ -1,6 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getInventoryStats, listInventory, updateInventoryItem } from './api'
+import {
+  createInventoryItem,
+  deleteInventoryItem,
+  getInventoryStats,
+  listInventory,
+  updateInventoryItem,
+} from './api'
 import { stockKeys } from './query-keys'
 import { type InventoryFilters, type UpdateInventoryItemVariables } from './types'
 
@@ -22,17 +28,41 @@ export function useInventoryStats() {
   })
 }
 
-export function useUpdateInventoryItem() {
+function useInventoryInvalidation() {
   const queryClient = useQueryClient()
+
+  return async () => {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: stockKeys.lists() }),
+      queryClient.invalidateQueries({ queryKey: stockKeys.stats() }),
+    ])
+  }
+}
+
+export function useCreateInventoryItem() {
+  const invalidateInventory = useInventoryInvalidation()
+
+  return useMutation({
+    mutationFn: createInventoryItem,
+    onSuccess: invalidateInventory,
+  })
+}
+
+export function useUpdateInventoryItem() {
+  const invalidateInventory = useInventoryInvalidation()
 
   return useMutation({
     mutationFn: ({ itemId, changes }: UpdateInventoryItemVariables) =>
       updateInventoryItem(itemId, changes),
-    onSuccess: async () => {
-      await Promise.all([
-        queryClient.invalidateQueries({ queryKey: stockKeys.lists() }),
-        queryClient.invalidateQueries({ queryKey: stockKeys.stats() }),
-      ])
-    },
+    onSuccess: invalidateInventory,
+  })
+}
+
+export function useDeleteInventoryItem() {
+  const invalidateInventory = useInventoryInvalidation()
+
+  return useMutation({
+    mutationFn: deleteInventoryItem,
+    onSuccess: invalidateInventory,
   })
 }
