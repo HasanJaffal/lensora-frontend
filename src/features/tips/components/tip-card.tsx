@@ -7,11 +7,7 @@ import { ApiError } from '@/lib/api-error'
 import { resolveBilingual, useTranslation } from '@/lib/i18n'
 
 import { useSendTip } from '../hooks'
-import {
-  resolveTipCategoryLabel,
-  resolveTipIcon,
-  resolveTipTone,
-} from '../services/tip-appearance'
+import { resolveTipCategoryLabel, resolveTipIcon, resolveTipTone } from '../services/tip-appearance'
 import { type TipDto } from '../types'
 import { ConfirmSendTipDialog } from './confirm-send-tip-dialog'
 import { SendTipDialog } from './send-tip-dialog'
