@@ -582,6 +582,8 @@ export const enMessages = {
     send: {
       dialogTitle: 'Send tip to patient',
       dialogDescription: 'Choose the patient who should receive “{tip}”.',
+      confirmTitle: 'Send this tip?',
+      confirmDescription: 'This sends “{tip}” to this patient.',
       success: 'Tip sent to patient.',
     },
   },

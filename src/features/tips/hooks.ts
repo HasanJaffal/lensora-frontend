@@ -1,4 +1,6 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+
+import { patientsKeys } from '@/features/patients/query-keys'
 
 import { listTips, sendTipToPatient } from './api'
 import { tipsKeys } from './query-keys'
@@ -12,7 +14,12 @@ export function useTips(category: TipCategory | undefined) {
 }
 
 export function useSendTip() {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: ({ tipId, patientId }: SendTipVariables) => sendTipToPatient(tipId, patientId),
+    onSuccess: async (_result, { patientId }) => {
+      await queryClient.invalidateQueries({ queryKey: patientsKeys.matchedTips(patientId) })
+    },
   })
 }

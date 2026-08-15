@@ -575,6 +575,8 @@ export const arMessages = {
     send: {
       dialogTitle: 'إرسال النصيحة إلى المريض',
       dialogDescription: 'اختر المريض الذي سيستلم «{tip}».',
+      confirmTitle: 'إرسال هذه النصيحة؟',
+      confirmDescription: 'سيتم إرسال «{tip}» إلى هذا المريض.',
       success: 'تم إرسال النصيحة إلى المريض.',
     },
   },

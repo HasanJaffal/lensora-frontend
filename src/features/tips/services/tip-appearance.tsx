@@ -76,5 +76,15 @@ export function resolveTipTone(category: string): StatusPillTone {
 }
 
 export function resolveTipLabelKey(category: string): TranslationKey | null {
-  return findByCategory(labelKeyByCategory, category) ?? null
+  return findByCategory(labelKeyByCategory, category)
+}
+
+/** An unrecognised category still gets a pill, showing the raw value rather than disappearing. */
+export function resolveTipCategoryLabel(
+  category: string,
+  t: (key: TranslationKey) => string,
+): string {
+  const labelKey = resolveTipLabelKey(category)
+
+  return labelKey ? t(labelKey) : category
 }

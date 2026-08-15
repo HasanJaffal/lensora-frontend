@@ -7,8 +7,13 @@ import { ApiError } from '@/lib/api-error'
 import { resolveBilingual, useTranslation } from '@/lib/i18n'
 
 import { useSendTip } from '../hooks'
-import { resolveTipIcon, resolveTipLabelKey, resolveTipTone } from '../services/tip-appearance'
+import {
+  resolveTipCategoryLabel,
+  resolveTipIcon,
+  resolveTipTone,
+} from '../services/tip-appearance'
 import { type TipDto } from '../types'
+import { ConfirmSendTipDialog } from './confirm-send-tip-dialog'
 import { SendTipDialog } from './send-tip-dialog'
 
 type TipCardProps = {
@@ -19,17 +24,22 @@ type TipCardProps = {
 export function TipCard({ patientId, tip }: TipCardProps) {
   const { locale, t, translateBackendError } = useTranslation()
   const sendTipMutation = useSendTip()
-  const [isPickerOpen, setIsPickerOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const title = resolveBilingual({ en: tip.titleEn, ar: tip.titleAr }, locale)
   const body = resolveBilingual({ en: tip.bodyEn, ar: tip.bodyAr }, locale)
   const categoryIcon = resolveTipIcon(tip.icon)
-  const categoryLabelKey = resolveTipLabelKey(tip.category)
+  const categoryLabel = resolveTipCategoryLabel(tip.category, t)
+  const isSending = sendTipMutation.isPending
 
   async function sendTip(recipientPatientId: string) {
+    if (isSending) {
+      return
+    }
+
     try {
       await sendTipMutation.mutateAsync({ tipId: tip.id, patientId: recipientPatientId })
-      setIsPickerOpen(false)
+      setIsDialogOpen(false)
       toast.success(t('tips.send.success'))
     } catch (error) {
       const message =
@@ -44,9 +54,7 @@ export function TipCard({ patientId, tip }: TipCardProps) {
         <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
           {categoryIcon}
         </span>
-        {categoryLabelKey ? (
-          <StatusPill tone={resolveTipTone(tip.category)}>{t(categoryLabelKey)}</StatusPill>
-        ) : null}
+        <StatusPill tone={resolveTipTone(tip.category)}>{categoryLabel}</StatusPill>
       </div>
 
       <div>
@@ -58,28 +66,32 @@ export function TipCard({ patientId, tip }: TipCardProps) {
         type="button"
         variant="outline"
         className="mt-auto self-start"
-        disabled={sendTipMutation.isPending}
-        onClick={() => {
-          if (patientId) {
-            void sendTip(patientId)
-            return
-          }
-
-          setIsPickerOpen(true)
-        }}
+        disabled={isSending}
+        onClick={() => setIsDialogOpen(true)}
       >
         {t('common.actions.sendToPatient')}
       </Button>
 
-      {patientId ? null : (
-        <SendTipDialog
-          isOpen={isPickerOpen}
-          isSending={sendTipMutation.isPending}
-          onOpenChange={setIsPickerOpen}
-          onConfirm={(selectedPatientId) => void sendTip(selectedPatientId)}
+      {/* A tip opened from a patient record already knows its recipient, so it only confirms. */}
+      {isDialogOpen && patientId ? (
+        <ConfirmSendTipDialog
+          isOpen
+          isSending={isSending}
+          onConfirm={() => void sendTip(patientId)}
+          onOpenChange={setIsDialogOpen}
           tipTitle={title.primary}
         />
-      )}
+      ) : null}
+
+      {isDialogOpen && !patientId ? (
+        <SendTipDialog
+          isOpen
+          isSending={isSending}
+          onConfirm={(selectedPatientId) => void sendTip(selectedPatientId)}
+          onOpenChange={setIsDialogOpen}
+          tipTitle={title.primary}
+        />
+      ) : null}
     </article>
   )
 }

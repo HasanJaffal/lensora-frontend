@@ -66,7 +66,7 @@ export function SendTipDialog({
               }
             }}
           >
-            {t('common.actions.sendToPatient')}
+            {isSending ? t('forms.submit.submitting') : t('common.actions.sendToPatient')}
           </Button>
         </DialogFooter>
       </DialogContent>
