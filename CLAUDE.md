@@ -178,6 +178,6 @@ Do not commit without user approval. Do not amend, rebase, reset, clean, restore
 - [ ] Behavior matches the referenced FR/NFR in `business_requirement.md`.
 - [ ] Naming, architecture, and styling rules above are honored.
 - [ ] `npm run precommit` passes.
-- [ ] EN/AR + RTL verified for any UI; AI-dependent paths verified with the provider disabled.
+- [ ] EN/AR + RTL verified for any UI.
 - [ ] No hardcoded config, no stray comments, no `any`, no unhandled error paths.
 - [ ] Summarize on completion: files changed, what changed, whether `npm run precommit` passed, any warnings or follow-up needed. Do not claim success if checks were not run; do not hide errors; do not make silent changes outside the approved plan.

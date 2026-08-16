@@ -25,19 +25,12 @@ const backendErrors = {
   server: {
     internal: 'Something went wrong on our side. Please try again.',
   },
-  ai: {
-    unavailable: 'The assistant is temporarily unavailable.',
-  },
   patient: {
     notFound: 'The requested patient could not be found.',
   },
   inventory: {
     outOfStock: 'This item is out of stock.',
     skuTaken: 'An item with this SKU already exists.',
-  },
-  import: {
-    fileTooLarge: 'This file is too large to upload.',
-    unsupportedType: 'This file type is not supported.',
   },
   attachment: {
     notFound: 'The requested attachment could not be found.',
@@ -85,7 +78,6 @@ export const enMessages = {
       collapseSidebar: 'Collapse sidebar',
       dashboard: 'Dashboard',
       expandSidebar: 'Expand sidebar',
-      importForm: 'Import Form',
       intake: 'Intake',
       lensSelector: 'Lens Selector',
       openNavigation: 'Open navigation',
@@ -393,46 +385,6 @@ export const enMessages = {
       pathological: 'Pathological',
       relationship: 'Relationship',
     },
-    importReference: {
-      title: 'Imported paper form',
-      description:
-        'Questions extracted from the uploaded document, for reference while filling in this form.',
-      questionCount: '{count} questions extracted',
-      loadError: 'We could not load the imported questions.',
-    },
-  },
-  import: {
-    title: 'Import Form',
-    subtitle: 'Convert a paper form into a digital questionnaire.',
-    upload: {
-      title: 'Upload a paper form',
-      dropzoneLabel: 'Drag and drop a file here',
-      dropzoneHint: 'PDF, JPG, or PNG up to {maxSizeMb} MB',
-      browse: 'Choose a file',
-      invalidType: 'Choose a PDF, JPG, or PNG file.',
-      fileTooLarge: 'The file exceeds the {maxSizeMb} MB limit.',
-      uploadError: 'We could not process this document. Please try again.',
-    },
-    processing: {
-      title: 'Analyzing the document',
-      description: 'Extracting questions from the uploaded form.',
-    },
-    review: {
-      title: 'Extracted questions',
-      questionCount: '{count} questions extracted',
-      sourceFile: 'Source: {fileName}',
-      fallbackNotice:
-        'Automatic extraction was unavailable, so a standard question set is shown instead.',
-      importAnother: 'Import another document',
-      useAsIntake: 'Use as intake form',
-      emptyTitle: 'No questions were extracted',
-      emptyDescription: 'Try uploading a clearer copy of the form.',
-      answerTypes: {
-        short: 'Short text',
-        long: 'Long text',
-        checklist: 'Checklist',
-      },
-    },
   },
   lens: {
     title: 'Lens Selector',
@@ -522,13 +474,6 @@ export const enMessages = {
       title: 'Adjust overlay',
       width: 'Width',
       height: 'Height',
-    },
-    advice: {
-      title: 'Styling advice',
-      offline: 'Offline advice',
-      noFrameTitle: 'No frame selected',
-      noFrameDescription: 'Choose a frame to get styling advice.',
-      loadError: 'We could not load styling advice. Please try again.',
     },
   },
   storefront: {
@@ -667,19 +612,6 @@ export const enMessages = {
       confirm: 'Delete item',
       success: 'Stock item deleted.',
     },
-  },
-  assistant: {
-    title: 'Assistant',
-    placeholder: 'Ask the practice assistant...',
-    ask: 'Ask',
-    send: 'Send message',
-    close: 'Close assistant',
-    typing: 'The assistant is typing',
-    offline: 'Offline mode',
-    emptyTitle: 'How can I help?',
-    emptyDescription: 'Ask about patients, prescriptions, stock, or lens choices.',
-    suggestionsError: 'Suggestions are unavailable right now.',
-    sendError: 'The message could not be sent. Please try again.',
   },
   platformAdmin: {
     layout: {

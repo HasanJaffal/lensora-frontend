@@ -23,19 +23,12 @@ export const backendErrorKeys = {
   server: {
     internal: 'server.internal',
   },
-  ai: {
-    unavailable: 'ai.unavailable',
-  },
   patient: {
     notFound: 'patient.notFound',
   },
   inventory: {
     outOfStock: 'inventory.outOfStock',
     skuTaken: 'inventory.skuTaken',
-  },
-  import: {
-    fileTooLarge: 'import.fileTooLarge',
-    unsupportedType: 'import.unsupportedType',
   },
   attachment: {
     notFound: 'attachment.notFound',

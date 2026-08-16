@@ -30,7 +30,6 @@ export const arMessages = {
       collapseSidebar: 'طي الشريط الجانبي',
       dashboard: 'لوحة التحكم',
       expandSidebar: 'توسيع الشريط الجانبي',
-      importForm: 'استيراد نموذج',
       intake: 'الاستقبال',
       lensSelector: 'اختيار العدسات',
       openNavigation: 'فتح التنقل',
@@ -79,19 +78,12 @@ export const arMessages = {
     server: {
       internal: 'حدث خطأ لدينا. يرجى المحاولة مرة أخرى.',
     },
-    ai: {
-      unavailable: 'المساعد غير متاح مؤقتا.',
-    },
     patient: {
       notFound: 'تعذر العثور على المريض المطلوب.',
     },
     inventory: {
       outOfStock: 'هذا الصنف غير متوفر في المخزون.',
       skuTaken: 'يوجد صنف بهذا الرمز بالفعل.',
-    },
-    import: {
-      fileTooLarge: 'هذا الملف كبير جدا لتحميله.',
-      unsupportedType: 'نوع هذا الملف غير مدعوم.',
     },
     attachment: {
       notFound: 'تعذر العثور على المرفق المطلوب.',
@@ -388,44 +380,6 @@ export const arMessages = {
       pathological: 'مرضي',
       relationship: 'صلة القرابة',
     },
-    importReference: {
-      title: 'النموذج الورقي المستورد',
-      description: 'الأسئلة المستخرجة من المستند المرفوع، للاستئناس بها أثناء تعبئة هذا النموذج.',
-      questionCount: 'تم استخراج {count} سؤالا',
-      loadError: 'تعذّر تحميل الأسئلة المستوردة.',
-    },
-  },
-  import: {
-    title: 'استيراد نموذج',
-    subtitle: 'حوّل نموذجا ورقيا إلى استبيان رقمي.',
-    upload: {
-      title: 'ارفع نموذجا ورقيا',
-      dropzoneLabel: 'اسحب الملف وأفلته هنا',
-      dropzoneHint: 'PDF أو JPG أو PNG بحجم أقصاه {maxSizeMb} ميغابايت',
-      browse: 'اختر ملفا',
-      invalidType: 'اختر ملف PDF أو JPG أو PNG.',
-      fileTooLarge: 'حجم الملف يتجاوز {maxSizeMb} ميغابايت.',
-      uploadError: 'تعذّرت معالجة هذا المستند. يرجى المحاولة مرة أخرى.',
-    },
-    processing: {
-      title: 'جارٍ تحليل المستند',
-      description: 'يتم استخراج الأسئلة من النموذج المرفوع.',
-    },
-    review: {
-      title: 'الأسئلة المستخرجة',
-      questionCount: 'تم استخراج {count} سؤالا',
-      sourceFile: 'المصدر: {fileName}',
-      fallbackNotice: 'تعذّر الاستخراج التلقائي، لذا تُعرض مجموعة أسئلة قياسية بدلا من ذلك.',
-      importAnother: 'استيراد مستند آخر',
-      useAsIntake: 'استخدامه كنموذج استقبال',
-      emptyTitle: 'لم يتم استخراج أي أسئلة',
-      emptyDescription: 'حاول رفع نسخة أوضح من النموذج.',
-      answerTypes: {
-        short: 'نص قصير',
-        long: 'نص طويل',
-        checklist: 'قائمة اختيار',
-      },
-    },
   },
   lens: {
     title: 'اختيار العدسات',
@@ -515,13 +469,6 @@ export const arMessages = {
       title: 'ضبط التراكب',
       width: 'العرض',
       height: 'الارتفاع',
-    },
-    advice: {
-      title: 'نصائح التنسيق',
-      offline: 'نصائح دون اتصال',
-      noFrameTitle: 'لم يتم اختيار إطار',
-      noFrameDescription: 'اختر إطاراً للحصول على نصائح التنسيق.',
-      loadError: 'تعذّر تحميل نصائح التنسيق. يرجى المحاولة مرة أخرى.',
     },
   },
   storefront: {
@@ -661,19 +608,6 @@ export const arMessages = {
       confirm: 'حذف الصنف',
       success: 'تم حذف الصنف.',
     },
-  },
-  assistant: {
-    title: 'المساعد',
-    placeholder: 'اسأل مساعد العيادة...',
-    ask: 'اسأل',
-    send: 'إرسال الرسالة',
-    close: 'إغلاق المساعد',
-    typing: 'المساعد يكتب',
-    offline: 'وضع عدم الاتصال',
-    emptyTitle: 'كيف يمكنني المساعدة؟',
-    emptyDescription: 'اسأل عن المرضى أو الوصفات أو المخزون أو اختيار العدسات.',
-    suggestionsError: 'الاقتراحات غير متاحة حاليًا.',
-    sendError: 'تعذّر إرسال الرسالة. يُرجى المحاولة مرة أخرى.',
   },
   platformAdmin: {
     layout: {
