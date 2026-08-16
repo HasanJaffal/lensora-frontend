@@ -2,7 +2,6 @@ import { useState, type ReactNode } from 'react'
 
 import { AppToolbar } from '@/components/layout/app-toolbar'
 import { AppSidebar } from '@/components/layout/app-sidebar'
-import { AssistantDock } from '@/features/assistant'
 import { useInventoryStats } from '@/features/stock'
 import { cn } from '@/lib/utils'
 
@@ -54,15 +53,11 @@ export function AppLayout({ children }: AppLayoutProps) {
         <main className="min-h-0 flex-1 overflow-hidden bg-card px-3 pb-3 sm:px-4 sm:pb-4">
           <div className="h-full overflow-hidden rounded-2xl border border-border bg-background">
             <div className="h-full overflow-y-auto">
-              <div className="w-full px-4 pt-5 pb-24 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6">
-                {children}
-              </div>
+              <div className="w-full px-4 py-5 sm:px-5 lg:px-6 lg:py-6">{children}</div>
             </div>
           </div>
         </main>
       </div>
-
-      <AssistantDock />
     </div>
   )
 }
