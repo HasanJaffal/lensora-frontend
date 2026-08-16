@@ -2,18 +2,6 @@ import { type FrameUse } from '@/features/lens/types'
 
 export type ProductNeed = FrameUse
 
-export type StylingAdviceRequest = {
-  patientId?: string
-  frameId: string
-  need: ProductNeed
-  locale: string
-}
-
-export type StylingAdviceDto = {
-  tips: string[]
-  usedFallback: boolean
-}
-
 // The only fields the try-on renderer reads. Kept narrower than InventoryItemDto so the
 // same components serve both the tenant catalog and the public storefront catalog.
 export type TryOnFrame = {

@@ -10,7 +10,6 @@ import { FramePicker } from '../components/frame-picker'
 import { NeedSwitch } from '../components/need-switch'
 import { PhotoInput } from '../components/photo-input'
 import { PhotoStage } from '../components/photo-stage'
-import { StylingAdvicePanel } from '../components/styling-advice-panel'
 import { defaultOverlayScale } from '../services/frame-appearance'
 import { type OverlayScale, type ProductNeed } from '../types'
 
@@ -100,8 +99,6 @@ export function TryOnPage() {
               scale={scale}
             />
           )}
-
-          <StylingAdvicePanel frameId={effectiveFrameId} need={need} patientId={search.patientId} />
         </div>
       </div>
     </div>
