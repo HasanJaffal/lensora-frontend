@@ -1,7 +1,6 @@
 import {
   Camera,
   ClipboardList,
-  FileUp,
   Glasses,
   LayoutDashboard,
   Lightbulb,
@@ -28,5 +27,4 @@ export const navigationItems: NavigationItem[] = [
   { labelKey: 'common.navigation.virtualTryOn', to: '/try-on', icon: Camera },
   { labelKey: 'common.navigation.stock', to: '/stock', icon: Package, hasStockBadge: true },
   { labelKey: 'common.navigation.tips', to: '/tips', icon: Lightbulb },
-  { labelKey: 'common.navigation.importForm', to: '/import', icon: FileUp },
 ]

@@ -21,7 +21,6 @@ import { Route as AppTipsRouteImport } from './routes/_app/tips'
 import { Route as AppStockRouteImport } from './routes/_app/stock'
 import { Route as AppLensRouteImport } from './routes/_app/lens'
 import { Route as AppIntakeRouteImport } from './routes/_app/intake'
-import { Route as AppImportRouteImport } from './routes/_app/import'
 import { Route as StoreSlugIndexRouteImport } from './routes/store.$slug.index'
 import { Route as AppPatientsIndexRouteImport } from './routes/_app/patients.index'
 import { Route as StoreSlugTryOnRouteImport } from './routes/store.$slug.try-on'
@@ -87,11 +86,6 @@ const AppIntakeRoute = AppIntakeRouteImport.update({
   path: '/intake',
   getParentRoute: () => AppRoute,
 } as any)
-const AppImportRoute = AppImportRouteImport.update({
-  id: '/import',
-  path: '/import',
-  getParentRoute: () => AppRoute,
-} as any)
 const StoreSlugIndexRoute = StoreSlugIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -117,7 +111,6 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
   '/platform-admin': typeof PlatformAdminRouteWithChildren
-  '/import': typeof AppImportRoute
   '/intake': typeof AppIntakeRoute
   '/lens': typeof AppLensRoute
   '/stock': typeof AppStockRoute
@@ -133,7 +126,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/import': typeof AppImportRoute
   '/intake': typeof AppIntakeRoute
   '/lens': typeof AppLensRoute
   '/stock': typeof AppStockRoute
@@ -152,7 +144,6 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/platform-admin': typeof PlatformAdminRouteWithChildren
-  '/_app/import': typeof AppImportRoute
   '/_app/intake': typeof AppIntakeRoute
   '/_app/lens': typeof AppLensRoute
   '/_app/stock': typeof AppStockRoute
@@ -173,7 +164,6 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/platform-admin'
-    | '/import'
     | '/intake'
     | '/lens'
     | '/stock'
@@ -189,7 +179,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
-    | '/import'
     | '/intake'
     | '/lens'
     | '/stock'
@@ -207,7 +196,6 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/platform-admin'
-    | '/_app/import'
     | '/_app/intake'
     | '/_app/lens'
     | '/_app/stock'
@@ -316,13 +304,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIntakeRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/import': {
-      id: '/_app/import'
-      path: '/import'
-      fullPath: '/import'
-      preLoaderRoute: typeof AppImportRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/store/$slug/': {
       id: '/store/$slug/'
       path: '/'
@@ -355,7 +336,6 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
-  AppImportRoute: typeof AppImportRoute
   AppIntakeRoute: typeof AppIntakeRoute
   AppLensRoute: typeof AppLensRoute
   AppStockRoute: typeof AppStockRoute
@@ -367,7 +347,6 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppImportRoute: AppImportRoute,
   AppIntakeRoute: AppIntakeRoute,
   AppLensRoute: AppLensRoute,
   AppStockRoute: AppStockRoute,

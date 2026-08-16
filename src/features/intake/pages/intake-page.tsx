@@ -3,7 +3,6 @@ import { getRouteApi } from '@tanstack/react-router'
 import { ErrorState, LoadingState } from '@/components/custom/feedback'
 import { useTranslation } from '@/lib/i18n'
 
-import { ImportedQuestionsPanel } from '../components/imported-questions-panel'
 import { IntakeForm } from '../components/intake-form'
 import { IntakeStatusBadge } from '../components/intake-status-badge'
 import { useIntake } from '../hooks'
@@ -34,8 +33,6 @@ export function IntakePage() {
         </div>
         {intakeQuery.data ? <IntakeStatusBadge status={intakeQuery.data.status} /> : null}
       </div>
-
-      {search.importId ? <ImportedQuestionsPanel importId={search.importId} /> : null}
 
       {/* Keyed so switching records rebuilds the form: TanStack Form ignores defaultValues changes. */}
       <IntakeForm
