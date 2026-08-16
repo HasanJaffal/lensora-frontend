@@ -1,5 +1,7 @@
 export { AuthProvider } from './auth-provider'
 export { useAuth } from './auth-context'
 export { LoginPage } from './pages/login-page'
+export { resolveLandingPath } from './landing-path'
+export { ensureRoleAccess, resolveOptionalCurrentUser } from './route-guards'
 export type { AuthContextValue } from './auth-context'
 export type { OrganizationSummaryDto, UserDto } from './types'

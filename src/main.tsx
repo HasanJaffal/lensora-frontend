@@ -7,12 +7,14 @@ import { ScrollbarActivity } from '@/components/custom/scrollbar-activity'
 import { ThemeProvider } from '@/components/custom/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { I18nProvider } from '@/lib/i18n'
+import { queryClient } from '@/lib/query-client'
 import '@/lib/env'
 import { routeTree } from './routeTree.gen'
 import './index.css'
 
 const router = createRouter({
   routeTree,
+  context: { queryClient },
 })
 
 declare module '@tanstack/react-router' {

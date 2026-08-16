@@ -4,8 +4,6 @@ import { type UserDto } from './types'
 
 export type AuthContextValue = {
   user: UserDto | null
-  isAuthenticated: boolean
-  isHydrating: boolean
   setSession: (accessToken: string, user: UserDto) => void
   signOut: () => void
 }

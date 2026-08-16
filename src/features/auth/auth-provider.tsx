@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useMemo, type ReactNode } from 'react'
-import { useNavigate, useRouterState } from '@tanstack/react-router'
+import { useCallback, useMemo, type ReactNode } from 'react'
+import { useNavigate } from '@tanstack/react-router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { ApiError } from '@/lib/api-error'
-import { getAuthToken, setAuthToken } from '@/lib/auth-token'
+import { setAuthToken } from '@/lib/auth-token'
 
 import { AuthContext } from './auth-context'
-import { fetchCurrentUser } from './api'
-import { authKeys } from './query-keys'
+import { currentUserQueryOptions } from './current-user-query'
+import { resolveLandingPath } from './landing-path'
 import { type UserDto } from './types'
 
 type AuthProviderProps = {
@@ -18,62 +17,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  // The public storefront must not resolve a session: a customer browsing on a device the
-  // practice signed in on should trigger no authenticated request at all.
-  const isPublicRoute = useRouterState({
-    select: (state) => state.location.pathname.startsWith('/store/'),
-  })
-
-  const currentUserQuery = useQuery<UserDto | null>({
-    queryKey: authKeys.currentUser,
-    queryFn: () => (getAuthToken() === null ? null : fetchCurrentUser()),
-    enabled: !isPublicRoute,
-    retry: false,
-    staleTime: Infinity,
-  })
-
-  const isSessionExpired =
-    currentUserQuery.error instanceof ApiError && currentUserQuery.error.status === 401
-
-  useEffect(() => {
-    if (isSessionExpired) {
-      setAuthToken(null)
-      navigate({ to: '/login' })
-    }
-  }, [isSessionExpired, navigate])
+  // Route guards resolve the session before a route commits; this only subscribes to the
+  // resulting cache entry, so the public storefront never triggers an authenticated request.
+  const currentUserQuery = useQuery({ ...currentUserQueryOptions, enabled: false })
 
   const setSession = useCallback(
     (accessToken: string, user: UserDto) => {
       setAuthToken(accessToken)
-      queryClient.setQueryData(authKeys.currentUser, user)
-      if (user.role === 'platformAdmin') {
-        navigate({ to: '/platform-admin' })
-        return
-      }
-      navigate({ to: '/' })
+      queryClient.setQueryData(currentUserQueryOptions.queryKey, user)
+      navigate({ to: resolveLandingPath(user.role), replace: true })
     },
     [navigate, queryClient],
   )
 
   const signOut = useCallback(() => {
     setAuthToken(null)
-    queryClient.setQueryData(authKeys.currentUser, null)
-    navigate({ to: '/login' })
+    queryClient.removeQueries({ queryKey: currentUserQueryOptions.queryKey })
+    navigate({ to: '/login', replace: true })
   }, [navigate, queryClient])
-
-  const user = currentUserQuery.data ?? null
-  // A disabled query stays `isLoading`, so public routes would otherwise hydrate forever.
-  const isHydrating = !isPublicRoute && currentUserQuery.isLoading
 
   const value = useMemo(
     () => ({
-      user,
-      isAuthenticated: user !== null,
-      isHydrating,
+      user: currentUserQuery.data ?? null,
       setSession,
       signOut,
     }),
-    [user, isHydrating, setSession, signOut],
+    [currentUserQuery.data, setSession, signOut],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
