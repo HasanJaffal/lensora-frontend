@@ -50,7 +50,7 @@ export const IndividualInfoSection = withForm({
 
         <form.AppField name="individualInfo.city">
           {(field) => (
-            <field.TextField autoComplete="off" label={t('intake.individualInfo.city')} />
+            <field.TextField autoComplete="off" label={t('intake.individualInfo.city')} required />
           )}
         </form.AppField>
 
@@ -70,6 +70,7 @@ export const IndividualInfoSection = withForm({
               autoComplete="off"
               inputMode="tel"
               label={t('intake.individualInfo.cellPhone')}
+              required
             />
           )}
         </form.AppField>

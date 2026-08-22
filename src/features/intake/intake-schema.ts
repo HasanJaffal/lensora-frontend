@@ -67,8 +67,8 @@ function buildIntakeSchema(t: I18nContextValue['t'], isCompletion: boolean) {
       formDate: z.string(),
       address: z.string(),
       homePhone: z.string(),
-      city: z.string(),
-      cellPhone: z.string(),
+      city: z.string().refine(requiredText, required),
+      cellPhone: z.string().refine(requiredText, required),
       email: z
         .string()
         .refine(

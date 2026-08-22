@@ -1,8 +1,19 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
+
+import { patientsKeys } from '@/features/patients'
 
 import { createIntake, getIntake, listIntakes, updateIntake } from './api'
 import { intakeKeys } from './query-keys'
-import { type IntakeListQuery, type IntakeUpdateRequest } from './types'
+import { type IntakeDto, type IntakeListQuery, type IntakeUpdateRequest } from './types'
+
+function cacheSavedIntake(queryClient: QueryClient, intake: IntakeDto) {
+  queryClient.setQueryData(intakeKeys.detail(intake.id), intake)
+  void queryClient.invalidateQueries({ queryKey: intakeKeys.lists() })
+
+  if (intake.patientId !== null) {
+    void queryClient.invalidateQueries({ queryKey: patientsKeys.all })
+  }
+}
 
 export function useIntakeList(query: IntakeListQuery) {
   return useQuery({
@@ -29,10 +40,7 @@ export function useCreateIntake() {
 
   return useMutation({
     mutationFn: createIntake,
-    onSuccess: (intake) => {
-      queryClient.setQueryData(intakeKeys.detail(intake.id), intake)
-      void queryClient.invalidateQueries({ queryKey: intakeKeys.lists() })
-    },
+    onSuccess: (intake) => cacheSavedIntake(queryClient, intake),
   })
 }
 
@@ -42,9 +50,6 @@ export function useUpdateIntake() {
   return useMutation({
     mutationFn: ({ intakeId, request }: { intakeId: string; request: IntakeUpdateRequest }) =>
       updateIntake(intakeId, request),
-    onSuccess: (intake) => {
-      queryClient.setQueryData(intakeKeys.detail(intake.id), intake)
-      void queryClient.invalidateQueries({ queryKey: intakeKeys.lists() })
-    },
+    onSuccess: (intake) => cacheSavedIntake(queryClient, intake),
   })
 }

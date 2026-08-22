@@ -65,15 +65,22 @@ export function IntakeForm({ intake, intakeId, onIntakeCreated, patientId }: Int
       const request = toIntakeRequest(value, status, patientId ?? null)
 
       try {
+        let createdIntakeId: string | null = null
+
         if (intakeId) {
           await updateIntakeMutation.mutateAsync({ intakeId, request })
         } else {
-          const created = await createIntakeMutation.mutateAsync(request)
-          await onIntakeCreated(created.id)
+          createdIntakeId = (await createIntakeMutation.mutateAsync(request)).id
         }
 
         setInvalidTabs(new Set())
+        // Reset before redirecting so the unsaved-changes blocker does not challenge our own navigation.
         form.reset(value)
+
+        if (createdIntakeId !== null) {
+          await onIntakeCreated(createdIntakeId)
+        }
+
         toast.success(
           status === 'completed' ? t('intake.actions.completed') : t('intake.actions.draftSaved'),
         )

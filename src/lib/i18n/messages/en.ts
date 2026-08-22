@@ -264,10 +264,10 @@ export const enMessages = {
       complete: 'Complete intake',
       saving: 'Saving...',
       draftSaved: 'Draft saved.',
-      completed: 'Intake completed.',
+      completed: 'Intake completed. The patient record is saved.',
       validationFailed: 'Please fill in the required fields before completing.',
       completeRequirementHint:
-        'A draft saves anything you have entered. Completing requires name, birthdate, and reason for visit.',
+        'A draft saves anything you have entered. Completing creates the patient record, so it requires name, birthdate, city, cell phone, and reason for visit.',
       tabHasErrors: 'This section has missing or invalid fields',
       discardChanges: 'You have unsaved changes. Leave without saving?',
     },

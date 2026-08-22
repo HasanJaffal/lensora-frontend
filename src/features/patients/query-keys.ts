@@ -1,6 +1,7 @@
 import { type PatientListQuery } from './types'
 
 export const patientsKeys = {
+  all: ['patients'] as const,
   list: (query: PatientListQuery) => ['patients', 'list', query] as const,
   detail: (patientId: string) => ['patients', 'detail', patientId] as const,
   lensOrder: (patientId: string) => ['patients', patientId, 'lens-order'] as const,
