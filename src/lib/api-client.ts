@@ -38,7 +38,7 @@ type RequestOptions = {
 }
 
 function buildUrl(path: string, query?: QueryParams): string {
-  const url = new URL(`${env.VITE_API_BASE_URL}${path}`)
+  const url = new URL(`${env.VITE_API_BASE_URL}${path}`, window.location.origin)
 
   if (query) {
     for (const [key, value] of Object.entries(query)) {
